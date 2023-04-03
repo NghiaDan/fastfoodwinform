@@ -81,7 +81,7 @@ namespace BanHang.DAO
                     }
                 }
                 data = command.ExecuteNonQuery();
-              
+                
                 connection.Close();
             }
 

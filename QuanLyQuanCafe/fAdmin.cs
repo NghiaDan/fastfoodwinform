@@ -18,7 +18,6 @@ namespace BanHang
     {
         BindingSource foodList = new BindingSource();
         BindingSource tablelist = new BindingSource();
-
         BindingSource accountList = new BindingSource();
 
         public Account loginAccount;
@@ -41,7 +40,7 @@ namespace BanHang
         {
             dtgvFood.DataSource = foodList;
             dtgvAccount.DataSource = accountList;
-
+            dtgvTable.DataSource = tablelist;
             LoadDateTimePickerBill();
             LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
             LoadListFood();
@@ -87,10 +86,7 @@ namespace BanHang
             cb.DataSource = CategoryDAO.Instance.GetListCategory();
             cb.DisplayMember = "Name";
         }
-        void LoadListFood()
-        {
-            foodList.DataSource = FoodDAO.Instance.GetListFood();
-        }
+
       
         void AddAccount(string userName, string displayName, int type)
         {
@@ -282,6 +278,10 @@ namespace BanHang
                 MessageBox.Show("Có lỗi khi xóa thức ăn");
             }
         }
+        void LoadListFood()
+        {
+            foodList.DataSource = FoodDAO.Instance.GetListFood();
+        }
         private void btnShowFood_Click(object sender, EventArgs e)
         {
             LoadListFood();
@@ -361,12 +361,13 @@ namespace BanHang
 
         void LoadListTable()
         {
-            dtgvTable.DataSource = FoodDAO.Instance.Getlisttable();
+            tablelist.DataSource = TableDAO.Instance.Getlisttable();
         } 
         private void btnShowTable_Click(object sender, EventArgs e)
         {
             LoadListTable();
         }
+       
         void AddTableBinding()
         {
             txbTableName.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "name", true, DataSourceUpdateMode.Never));
@@ -374,10 +375,11 @@ namespace BanHang
             textBox3.DataBindings.Add(new Binding("Text",dtgvTable.DataSource,"ID",true,DataSourceUpdateMode.Never));
         }
 
-        private void btnAddTable_Click(object sender, EventArgs e)
+        public void btnAddTable_Click(object sender, EventArgs e)
         {
             string name =txbTableName.Text;
-            string status = textBox3.Text;
+            string status = cbTableStatus.Text;
+
             if(TableDAO.Instance.InsertTable(name, status))
             {
                 MessageBox.Show("Thêm bàn thành công");
@@ -388,6 +390,42 @@ namespace BanHang
                 MessageBox.Show("Thêm không thành công");
             }
         }
+
+        private void btnEditTable_Click(object sender, EventArgs e)
+        {
+            string name = txbTableName.Text;
+            string status = cbTableStatus.Text;
+            int id=Convert.ToInt32(textBox3.Text);
+
+            if (TableDAO.Instance.UpdateTable(id, name, status ))
+            {
+                MessageBox.Show("Sửa bàn thành công");
+                LoadListTable();
+            }
+            else
+            {
+                MessageBox.Show("Sửa không thành công");
+            }
+        }
+
+        private void btnDeleteTable_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(textBox3.Text);
+         
+            if (TableDAO.Instance.DeleteTable(id))
+            {
+                MessageBox.Show("Xóa bàn thành công");
+                LoadListTable();
+            }
+            else
+            {
+                MessageBox.Show("Xóa bàn không thành công");
+            }
+        }
+
+     
+
+
     }
 }
 

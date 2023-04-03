@@ -49,7 +49,7 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(16, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(533, 167);
             this.panel1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Location = new System.Drawing.Point(425, 127);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(100, 28);
             this.btnExit.TabIndex = 3;
@@ -69,7 +69,7 @@
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(317, 127);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 28);
             this.btnLogin.TabIndex = 2;
@@ -82,7 +82,7 @@
             this.panel3.Controls.Add(this.txbPassWord);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Location = new System.Drawing.Point(4, 65);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(525, 54);
             this.panel3.TabIndex = 1;
@@ -90,7 +90,7 @@
             // txbPassWord
             // 
             this.txbPassWord.Location = new System.Drawing.Point(185, 12);
-            this.txbPassWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPassWord.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassWord.Name = "txbPassWord";
             this.txbPassWord.Size = new System.Drawing.Size(335, 22);
             this.txbPassWord.TabIndex = 1;
@@ -113,7 +113,7 @@
             this.panel2.Controls.Add(this.txbUserName);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(525, 54);
             this.panel2.TabIndex = 0;
@@ -121,7 +121,7 @@
             // txbUserName
             // 
             this.txbUserName.Location = new System.Drawing.Point(185, 12);
-            this.txbUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbUserName.Margin = new System.Windows.Forms.Padding(4);
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(335, 22);
             this.txbUserName.TabIndex = 1;
@@ -143,10 +143,11 @@
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SkyBlue;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(565, 193);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";

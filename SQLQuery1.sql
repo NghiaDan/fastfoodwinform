@@ -377,6 +377,21 @@ begin
 end
 
 --------------------------------------------
-delete  BillInfo
-delete bill
+create trigger UTG_DeleteBillInfo
+on BillInfo for delete
+as 
+begin 
+	declare @idbillinfo int
+	declare @idbill int
+	declare @idtable int	
+	select  @idbillinfo =id, @idbill=deleted.idBill from deleted
+	select @idtable =idtable from bill where id= @idBill
 
+	declare @count int=0
+	select @count=count(*) 
+	from billinfo bi ,bill b 
+	where b.id=bi.idbill and b.id=@idbill and b.status=0
+	if (@count=0) 
+		update tablefood set status =N'Trống' where id=@idtable
+end
+go
