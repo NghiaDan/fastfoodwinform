@@ -52,7 +52,6 @@ namespace BanHang
         {
             List<Food> listFood = FoodDAO.Instance.GetFoodByCategoryID(id);
             cbFood.DataSource = listFood;
-
             cbFood.DisplayMember = "Name";
         }
         void LoadTable()
@@ -208,7 +207,7 @@ namespace BanHang
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int foodID = (cbFood.SelectedItem as Food).ID;
             int count = (int)nmFoodCount.Value;
-
+            
             if (idBill == -1)
             {
                 BillDAO.Instance.InsertBill(table.ID);

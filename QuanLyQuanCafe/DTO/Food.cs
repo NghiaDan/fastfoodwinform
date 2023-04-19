@@ -9,12 +9,13 @@ namespace BanHang.DTO
 {
     public class Food
     {
-        public Food(int id, string name, int categoryID, float price)
+        public Food(int id, string name, int categoryID, float price, int quantity)
         {
             this.ID = id;
             this.Name = name;
             this.CategoryID = categoryID;
             this.Price = price;
+            this.Quantity=quantity;
         }
 
         public Food(DataRow row)
@@ -23,7 +24,16 @@ namespace BanHang.DTO
             this.Name = row["name"].ToString();
             this.CategoryID = (int)row["idcategory"];
             this.Price = (float)Convert.ToDouble(row["price"].ToString());
+            this.Quantity = (int)row["quantity"];
         }
+
+        private int quantity;
+        public int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
+
 
         private float price;
 

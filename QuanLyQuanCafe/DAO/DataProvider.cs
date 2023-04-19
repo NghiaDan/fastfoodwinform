@@ -20,7 +20,7 @@ namespace BanHang.DAO
 
         private DataProvider(){}
 
-        private string connectionSTR = "Data Source=DESKTOP-O5D0G28\\SQLEXPRESS;Initial Catalog=BanHang;Integrated Security=True";
+        private string connectionSTR = "Data Source=DESKTOP-O5D0G28\\SQLEXPRESS;Initial Catalog=db1;Integrated Security=True";
         
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,13 +20,40 @@ namespace BanHang
         BindingSource foodList = new BindingSource();
         BindingSource tablelist = new BindingSource();
         BindingSource accountList = new BindingSource();
-
+        BindingSource IngredientList = new BindingSource();
+        BindingSource RecipeList = new BindingSource();
         public Account loginAccount;
         public fAdmin()
         {
             InitializeComponent();
             LoadData();
-           
+        }
+        void LoadData()
+        {
+            dtgvFood.DataSource = foodList;
+            dtgvAccount.DataSource = accountList;
+            dtgvTable.DataSource = tablelist;
+            dtgvNL.DataSource = IngredientList;
+            dtgvRecipe.DataSource = RecipeList;
+            LoadDateTimePickerBill();
+            LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
+            LoadListFood();
+            LoadAccount();
+            LoadCategoryIntoCombobox(cbFoodCategory);
+            AddFoodBinding();
+            AddAccountBinding();
+            LoadListTable();
+            AddTableBinding();
+            LoadListIngredient();
+            AddIngredientBinding();
+            LoadIngredient();
+            LoadListRecipe();
+            LoadFood();
+
+
+
+
+
         }
 
         #region methods
@@ -36,21 +64,7 @@ namespace BanHang
 
             return listFood;
         }
-        void LoadData()
-        {
-            dtgvFood.DataSource = foodList;
-            dtgvAccount.DataSource = accountList;
-            dtgvTable.DataSource = tablelist;
-            LoadDateTimePickerBill();
-            LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
-            LoadListFood();
-            LoadAccount();
-            LoadCategoryIntoCombobox(cbFoodCategory);
-            AddFoodBinding();
-            AddAccountBinding();
-            LoadListTable();
-            AddTableBinding();
-        }
+
 
         void AddAccountBinding()
         {
@@ -79,6 +93,7 @@ namespace BanHang
             txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
             txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "ID", true, DataSourceUpdateMode.Never));
             nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
+            txtQuantityFood.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Quantity", true, DataSourceUpdateMode.Never));
         }
 
         void LoadCategoryIntoCombobox(ComboBox cb)
@@ -87,7 +102,7 @@ namespace BanHang
             cb.DisplayMember = "Name";
         }
 
-      
+
         void AddAccount(string userName, string displayName, int type)
         {
             if (AccountDAO.Instance.InsertAccount(userName, displayName, type))
@@ -228,8 +243,9 @@ namespace BanHang
             string name = txbFoodName.Text;
             int categoryID = (cbFoodCategory.SelectedItem as Category).ID;
             float price = (float)nmFoodPrice.Value;
+            int quantity = Convert.ToInt32(txtQuantityFood.Text);
 
-            if (FoodDAO.Instance.InsertFood(name, categoryID, price))
+            if (FoodDAO.Instance.InsertFood(name, categoryID, price, quantity))
             {
                 MessageBox.Show("Thêm món thành công");
                 LoadListFood();
@@ -248,8 +264,8 @@ namespace BanHang
             int categoryID = (cbFoodCategory.SelectedItem as Category).ID;
             float price = (float)nmFoodPrice.Value;
             int id = Convert.ToInt32(txbFoodID.Text);
-
-            if (FoodDAO.Instance.UpdateFood(id, name, categoryID, price))
+            int quantity = Convert.ToInt32(txtQuantityFood.Text);
+            if (FoodDAO.Instance.UpdateFood(id, name, categoryID, price, quantity))
             {
                 MessageBox.Show("Sửa món thành công");
                 LoadListFood();
@@ -282,7 +298,7 @@ namespace BanHang
         {
             foodList.DataSource = FoodDAO.Instance.GetListFood();
         }
-        private void btnShowFood_Click(object sender, EventArgs e)
+        private void btnShowFood_Click_1(object sender, EventArgs e)
         {
             LoadListFood();
         }
@@ -362,25 +378,25 @@ namespace BanHang
         void LoadListTable()
         {
             tablelist.DataSource = TableDAO.Instance.Getlisttable();
-        } 
+        }
         private void btnShowTable_Click(object sender, EventArgs e)
         {
             LoadListTable();
         }
-       
+
         void AddTableBinding()
         {
             txbTableName.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "name", true, DataSourceUpdateMode.Never));
             cbTableStatus.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "status", true, DataSourceUpdateMode.Never));
-            textBox3.DataBindings.Add(new Binding("Text",dtgvTable.DataSource,"ID",true,DataSourceUpdateMode.Never));
+            textBox3.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "ID", true, DataSourceUpdateMode.Never));
         }
 
         public void btnAddTable_Click(object sender, EventArgs e)
         {
-            string name =txbTableName.Text;
+            string name = txbTableName.Text;
             string status = cbTableStatus.Text;
 
-            if(TableDAO.Instance.InsertTable(name, status))
+            if (TableDAO.Instance.InsertTable(name, status))
             {
                 MessageBox.Show("Thêm bàn thành công");
                 LoadListTable();
@@ -395,9 +411,9 @@ namespace BanHang
         {
             string name = txbTableName.Text;
             string status = cbTableStatus.Text;
-            int id=Convert.ToInt32(textBox3.Text);
+            int id = Convert.ToInt32(textBox3.Text);
 
-            if (TableDAO.Instance.UpdateTable(id, name, status ))
+            if (TableDAO.Instance.UpdateTable(id, name, status))
             {
                 MessageBox.Show("Sửa bàn thành công");
                 LoadListTable();
@@ -411,7 +427,7 @@ namespace BanHang
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(textBox3.Text);
-         
+
             if (TableDAO.Instance.DeleteTable(id))
             {
                 MessageBox.Show("Xóa bàn thành công");
@@ -423,9 +439,123 @@ namespace BanHang
             }
         }
 
-     
 
 
+        void LoadListIngredient()
+        {
+            IngredientList.DataSource = IngredientDAO.Instance.GetlistIngredient();
+        }
+
+        private void btnShowNL_Click_1(object sender, EventArgs e)
+        {
+            LoadListIngredient();
+        }
+        void AddIngredientBinding()
+        {
+            txbNLID.DataBindings.Add(new Binding("Text", dtgvNL.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txtNameNL.DataBindings.Add(new Binding("Text", dtgvNL.DataSource, "name", true, DataSourceUpdateMode.Never));
+            nmHsdNL.DataBindings.Add(new Binding("Text", dtgvNL.DataSource, "ExpiryDate", true, DataSourceUpdateMode.Never));
+            txtQuantity.DataBindings.Add(new Binding("Text", dtgvNL.DataSource, "quantity", true, DataSourceUpdateMode.Never));
+            nmNLPrice.DataBindings.Add(new Binding("Value", dtgvNL.DataSource, "price", true, DataSourceUpdateMode.Never));
+        }
+
+        private void btnAddNL_Click(object sender, EventArgs e)
+        {
+            string name = txtNameNL.Text;
+            float price = (float)nmNLPrice.Value;
+            int expiryDate = (int)nmHsdNL.Value;
+            int quantity = Convert.ToInt32(txtQuantity.Text);
+
+            if (IngredientDAO.Instance.InsertIngredient(name, price, expiryDate, quantity))
+            {
+                MessageBox.Show("Thêm nguyên liệu thành công");
+                LoadListIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Thêm nguyên liệu không thành công");
+            }
+        }
+        private void btnDeleteNL_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbNLID.Text);
+
+            if (IngredientDAO.Instance.DeleteIngredient(id))
+            {
+                MessageBox.Show("Xóa nguyên liệu thành công");
+                LoadListIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Xóa nguyên liệu không thành công");
+            }
+        }
+
+
+
+
+
+        void LoadListRecipe()
+        {
+            RecipeList.DataSource = RecipeDAO.Instance.GetlistRecipe();
+        }
+
+        private void btnShowRecipe_Click(object sender, EventArgs e)
+        {
+            LoadListRecipe();
+        }
+        void LoadIngredient()
+        {
+            List<Ingredient> ingredients = IngredientDAO.Instance.GetlistIngredient();
+            cbRecipe.DataSource = ingredients;
+            cbRecipe.DisplayMember = "name";
+            
+        }
+
+        void LoadFood()
+        {
+            List<Food> foods = FoodDAO.Instance.GetListFood();
+            CbFood.DataSource = foods;
+            CbFood.DisplayMember = "name";
+
+        }
+        void show()
+        {
+            int quantity = (int)nmNLCount.Value;
+            ListViewItem listView = new ListViewItem(CbFood.Text);
+            //ListViewItem listView = new ListViewItem();
+            listView.SubItems.Add(cbRecipe.Text);
+            listView.SubItems.Add(quantity.ToString());
+            lsvNL.Items.Add(listView);
+        }
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+
+            int idHistory = HistoryDAO.Instance.GetMaxIDHistory();
+            int NLID = (cbRecipe.SelectedItem as Ingredient).ID; 
+            int quantity = (int)nmNLCount.Value;
+
+            if (idHistory == -1)
+            {
+                HistoryDAO.Instance.InsertHistory();
+                ImportExportDAO.Instance.insertImEx(NLID, HistoryDAO.Instance.GetMaxIDHistory(), quantity);
+            }
+            else
+            {
+                ImportExportDAO.Instance.insertImEx(NLID, idHistory, quantity);
+            }
+            show();
+        }   
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Bạn muốn tạo món này?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK) 
+            lsvNL.Items.Clear();
+
+        }
     }
 }
+
+
 
