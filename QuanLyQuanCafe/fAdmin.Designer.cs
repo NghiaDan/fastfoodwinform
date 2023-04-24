@@ -45,17 +45,19 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.cbRecipe = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnXem = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.txbPageNK = new System.Windows.Forms.TextBox();
-            this.btnNextNKPage = new System.Windows.Forms.Button();
-            this.btnPrevioursNKPage = new System.Windows.Forms.Button();
-            this.btnLastNKPage = new System.Windows.Forms.Button();
-            this.btnFristNKPage = new System.Windows.Forms.Button();
-            this.dtgvNK = new System.Windows.Forms.DataGridView();
+            this.nmquantity = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.btnViewNK = new System.Windows.Forms.Button();
-            this.dtpkToDateNK = new System.Windows.Forms.DateTimePicker();
-            this.dtpkFromDateNK = new System.Windows.Forms.DateTimePicker();
+            this.txtIngredient = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.txtidIngredient = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.dtgvIngredient = new System.Windows.Forms.DataGridView();
+            this.btnNhap = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel36 = new System.Windows.Forms.Panel();
             this.dtgvNL = new System.Windows.Forms.DataGridView();
@@ -156,6 +158,18 @@
             this.btnFristBillPage = new System.Windows.Forms.Button();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.tcAdmin = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.txtPageIngredient = new System.Windows.Forms.TextBox();
+            this.btnNextIngredientPage = new System.Windows.Forms.Button();
+            this.btnPrevioursIngredientPage = new System.Windows.Forms.Button();
+            this.btnLastIngredientPage = new System.Windows.Forms.Button();
+            this.btnFristIngredientPage = new System.Windows.Forms.Button();
+            this.dtgv = new System.Windows.Forms.DataGridView();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.btnViewIngredient = new System.Windows.Forms.Button();
+            this.dtpkToDateIngredient = new System.Windows.Forms.DateTimePicker();
+            this.dtpkFromDateIngredient = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.USP_GetListBillByDateForReportBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -163,8 +177,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmNLCount)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvNK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmquantity)).BeginInit();
             this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvIngredient)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.panel36.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvNL)).BeginInit();
@@ -211,6 +228,10 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvBill)).BeginInit();
             this.tcAdmin.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
+            this.panel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // USP_GetListBillByDateForReportBindingSource
@@ -259,10 +280,10 @@
             // 
             // btnShowRecipe
             // 
-            this.btnShowRecipe.Location = new System.Drawing.Point(163, 5);
+            this.btnShowRecipe.Location = new System.Drawing.Point(298, 7);
             this.btnShowRecipe.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowRecipe.Name = "btnShowRecipe";
-            this.btnShowRecipe.Size = new System.Drawing.Size(85, 45);
+            this.btnShowRecipe.Size = new System.Drawing.Size(85, 34);
             this.btnShowRecipe.TabIndex = 17;
             this.btnShowRecipe.Text = "Xem";
             this.btnShowRecipe.UseVisualStyleBackColor = true;
@@ -270,7 +291,7 @@
             // dtgvRecipe
             // 
             this.dtgvRecipe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvRecipe.Location = new System.Drawing.Point(3, 57);
+            this.dtgvRecipe.Location = new System.Drawing.Point(3, 60);
             this.dtgvRecipe.Name = "dtgvRecipe";
             this.dtgvRecipe.RowHeadersWidth = 51;
             this.dtgvRecipe.RowTemplate.Height = 24;
@@ -285,9 +306,9 @@
             this.columnHeader6});
             this.lsvNL.GridLines = true;
             this.lsvNL.HideSelection = false;
-            this.lsvNL.Location = new System.Drawing.Point(447, 96);
+            this.lsvNL.Location = new System.Drawing.Point(447, 83);
             this.lsvNL.Name = "lsvNL";
-            this.lsvNL.Size = new System.Drawing.Size(415, 350);
+            this.lsvNL.Size = new System.Drawing.Size(415, 316);
             this.lsvNL.TabIndex = 15;
             this.lsvNL.UseCompatibleStateImageBehavior = false;
             this.lsvNL.View = System.Windows.Forms.View.Details;
@@ -323,25 +344,25 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(747, 436);
+            this.btnAddNew.Location = new System.Drawing.Point(747, 419);
             this.btnAddNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(115, 51);
             this.btnAddNew.TabIndex = 4;
-            this.btnAddNew.Text = "Tạo mới";
+            this.btnAddNew.Text = "Thêm công thức";
             this.btnAddNew.UseVisualStyleBackColor = true;
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(777, 22);
+            this.btnCheck.Location = new System.Drawing.Point(777, 26);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(85, 45);
+            this.btnCheck.Size = new System.Drawing.Size(85, 34);
             this.btnCheck.TabIndex = 3;
-            this.btnCheck.Text = "Nhập";
+            this.btnCheck.Text = "Thêm";
             this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click_1);
             // 
             // cbRecipe
             // 
@@ -353,128 +374,153 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnXem);
             this.tabPage4.Controls.Add(this.panel16);
             this.tabPage4.Controls.Add(this.panel17);
+            this.tabPage4.Controls.Add(this.panel18);
+            this.tabPage4.Controls.Add(this.panel15);
+            this.tabPage4.Controls.Add(this.btnNhap);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(869, 511);
             this.tabPage4.TabIndex = 8;
-            this.tabPage4.Text = "Nhập kho";
+            this.tabPage4.Text = "Nhập nguyên liệu";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnXem
+            // 
+            this.btnXem.Location = new System.Drawing.Point(519, 288);
+            this.btnXem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXem.Name = "btnXem";
+            this.btnXem.Size = new System.Drawing.Size(100, 57);
+            this.btnXem.TabIndex = 24;
+            this.btnXem.Text = "Xem";
+            this.btnXem.UseVisualStyleBackColor = true;
+            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.txbPageNK);
-            this.panel16.Controls.Add(this.btnNextNKPage);
-            this.panel16.Controls.Add(this.btnPrevioursNKPage);
-            this.panel16.Controls.Add(this.btnLastNKPage);
-            this.panel16.Controls.Add(this.btnFristNKPage);
-            this.panel16.Controls.Add(this.dtgvNK);
-            this.panel16.Location = new System.Drawing.Point(9, 47);
+            this.panel16.Controls.Add(this.nmquantity);
+            this.panel16.Controls.Add(this.label7);
+            this.panel16.Location = new System.Drawing.Point(493, 205);
             this.panel16.Margin = new System.Windows.Forms.Padding(4);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(851, 454);
-            this.panel16.TabIndex = 5;
+            this.panel16.Size = new System.Drawing.Size(372, 54);
+            this.panel16.TabIndex = 23;
             // 
-            // txbPageNK
+            // nmquantity
             // 
-            this.txbPageNK.Location = new System.Drawing.Point(376, 422);
-            this.txbPageNK.Margin = new System.Windows.Forms.Padding(4);
-            this.txbPageNK.Name = "txbPageNK";
-            this.txbPageNK.ReadOnly = true;
-            this.txbPageNK.Size = new System.Drawing.Size(99, 22);
-            this.txbPageNK.TabIndex = 5;
-            this.txbPageNK.Text = "1";
-            this.txbPageNK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nmquantity.Location = new System.Drawing.Point(184, 11);
+            this.nmquantity.Margin = new System.Windows.Forms.Padding(4);
+            this.nmquantity.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.nmquantity.Name = "nmquantity";
+            this.nmquantity.Size = new System.Drawing.Size(182, 22);
+            this.nmquantity.TabIndex = 2;
             // 
-            // btnNextNKPage
+            // label7
             // 
-            this.btnNextNKPage.Location = new System.Drawing.Point(639, 422);
-            this.btnNextNKPage.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNextNKPage.Name = "btnNextNKPage";
-            this.btnNextNKPage.Size = new System.Drawing.Size(100, 28);
-            this.btnNextNKPage.TabIndex = 4;
-            this.btnNextNKPage.Text = "Next";
-            this.btnNextNKPage.UseVisualStyleBackColor = true;
-            // 
-            // btnPrevioursNKPage
-            // 
-            this.btnPrevioursNKPage.Location = new System.Drawing.Point(112, 422);
-            this.btnPrevioursNKPage.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrevioursNKPage.Name = "btnPrevioursNKPage";
-            this.btnPrevioursNKPage.Size = new System.Drawing.Size(100, 28);
-            this.btnPrevioursNKPage.TabIndex = 3;
-            this.btnPrevioursNKPage.Text = "Previours";
-            this.btnPrevioursNKPage.UseVisualStyleBackColor = true;
-            // 
-            // btnLastNKPage
-            // 
-            this.btnLastNKPage.Location = new System.Drawing.Point(747, 423);
-            this.btnLastNKPage.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLastNKPage.Name = "btnLastNKPage";
-            this.btnLastNKPage.Size = new System.Drawing.Size(100, 28);
-            this.btnLastNKPage.TabIndex = 2;
-            this.btnLastNKPage.Text = "Last";
-            this.btnLastNKPage.UseVisualStyleBackColor = true;
-            // 
-            // btnFristNKPage
-            // 
-            this.btnFristNKPage.Location = new System.Drawing.Point(4, 422);
-            this.btnFristNKPage.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFristNKPage.Name = "btnFristNKPage";
-            this.btnFristNKPage.Size = new System.Drawing.Size(100, 28);
-            this.btnFristNKPage.TabIndex = 1;
-            this.btnFristNKPage.Text = "First";
-            this.btnFristNKPage.UseVisualStyleBackColor = true;
-            // 
-            // dtgvNK
-            // 
-            this.dtgvNK.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvNK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvNK.Location = new System.Drawing.Point(4, 4);
-            this.dtgvNK.Margin = new System.Windows.Forms.Padding(4);
-            this.dtgvNK.Name = "dtgvNK";
-            this.dtgvNK.RowHeadersWidth = 51;
-            this.dtgvNK.Size = new System.Drawing.Size(843, 412);
-            this.dtgvNK.TabIndex = 0;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.Location = new System.Drawing.Point(4, 11);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 24);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Số lượng:";
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.btnViewNK);
-            this.panel17.Controls.Add(this.dtpkToDateNK);
-            this.panel17.Controls.Add(this.dtpkFromDateNK);
-            this.panel17.Location = new System.Drawing.Point(9, 9);
+            this.panel17.Controls.Add(this.txtIngredient);
+            this.panel17.Controls.Add(this.label8);
+            this.panel17.Location = new System.Drawing.Point(494, 143);
             this.panel17.Margin = new System.Windows.Forms.Padding(4);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(851, 32);
-            this.panel17.TabIndex = 4;
+            this.panel17.Size = new System.Drawing.Size(372, 54);
+            this.panel17.TabIndex = 22;
             // 
-            // btnViewNK
+            // txtIngredient
             // 
-            this.btnViewNK.Location = new System.Drawing.Point(376, 0);
-            this.btnViewNK.Margin = new System.Windows.Forms.Padding(4);
-            this.btnViewNK.Name = "btnViewNK";
-            this.btnViewNK.Size = new System.Drawing.Size(100, 28);
-            this.btnViewNK.TabIndex = 2;
-            this.btnViewNK.Text = "Thống kê";
-            this.btnViewNK.UseVisualStyleBackColor = true;
+            this.txtIngredient.Location = new System.Drawing.Point(186, 10);
+            this.txtIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIngredient.Name = "txtIngredient";
+            this.txtIngredient.Size = new System.Drawing.Size(180, 22);
+            this.txtIngredient.TabIndex = 1;
             // 
-            // dtpkToDateNK
+            // label8
             // 
-            this.dtpkToDateNK.Location = new System.Drawing.Point(580, 4);
-            this.dtpkToDateNK.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpkToDateNK.Name = "dtpkToDateNK";
-            this.dtpkToDateNK.Size = new System.Drawing.Size(265, 22);
-            this.dtpkToDateNK.TabIndex = 1;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.Location = new System.Drawing.Point(4, 11);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(174, 24);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Tên nguyên liệu: ";
             // 
-            // dtpkFromDateNK
+            // panel18
             // 
-            this.dtpkFromDateNK.Location = new System.Drawing.Point(4, 4);
-            this.dtpkFromDateNK.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpkFromDateNK.Name = "dtpkFromDateNK";
-            this.dtpkFromDateNK.Size = new System.Drawing.Size(265, 22);
-            this.dtpkFromDateNK.TabIndex = 0;
+            this.panel18.Controls.Add(this.txtidIngredient);
+            this.panel18.Controls.Add(this.label10);
+            this.panel18.Location = new System.Drawing.Point(494, 81);
+            this.panel18.Margin = new System.Windows.Forms.Padding(4);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(371, 54);
+            this.panel18.TabIndex = 21;
+            // 
+            // txtidIngredient
+            // 
+            this.txtidIngredient.Location = new System.Drawing.Point(186, 10);
+            this.txtidIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.txtidIngredient.Name = "txtidIngredient";
+            this.txtidIngredient.ReadOnly = true;
+            this.txtidIngredient.Size = new System.Drawing.Size(180, 22);
+            this.txtidIngredient.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label10.Location = new System.Drawing.Point(4, 11);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 24);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "ID:";
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.dtgvIngredient);
+            this.panel15.Location = new System.Drawing.Point(20, 34);
+            this.panel15.Margin = new System.Windows.Forms.Padding(4);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(465, 426);
+            this.panel15.TabIndex = 20;
+            // 
+            // dtgvIngredient
+            // 
+            this.dtgvIngredient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvIngredient.Location = new System.Drawing.Point(4, 4);
+            this.dtgvIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvIngredient.Name = "dtgvIngredient";
+            this.dtgvIngredient.RowHeadersWidth = 51;
+            this.dtgvIngredient.Size = new System.Drawing.Size(457, 418);
+            this.dtgvIngredient.TabIndex = 0;
+            // 
+            // btnNhap
+            // 
+            this.btnNhap.Location = new System.Drawing.Point(774, 300);
+            this.btnNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNhap.Name = "btnNhap";
+            this.btnNhap.Size = new System.Drawing.Size(85, 45);
+            this.btnNhap.TabIndex = 15;
+            this.btnNhap.Text = "Nhập";
+            this.btnNhap.UseVisualStyleBackColor = true;
+            this.btnNhap.Click += new System.EventHandler(this.btnNhap_Click);
             // 
             // tabPage1
             // 
@@ -1542,12 +1588,144 @@
             this.tcAdmin.Controls.Add(this.tabPage1);
             this.tcAdmin.Controls.Add(this.tabPage4);
             this.tcAdmin.Controls.Add(this.tabPage5);
+            this.tcAdmin.Controls.Add(this.tabPage2);
             this.tcAdmin.Location = new System.Drawing.Point(16, 15);
             this.tcAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.tcAdmin.Name = "tcAdmin";
             this.tcAdmin.SelectedIndex = 0;
             this.tcAdmin.Size = new System.Drawing.Size(877, 540);
             this.tcAdmin.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel24);
+            this.tabPage2.Controls.Add(this.panel22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(869, 511);
+            this.tabPage2.TabIndex = 10;
+            this.tabPage2.Text = "Danh sách nhập nguyên liệu";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel24
+            // 
+            this.panel24.Controls.Add(this.txtPageIngredient);
+            this.panel24.Controls.Add(this.btnNextIngredientPage);
+            this.panel24.Controls.Add(this.btnPrevioursIngredientPage);
+            this.panel24.Controls.Add(this.btnLastIngredientPage);
+            this.panel24.Controls.Add(this.btnFristIngredientPage);
+            this.panel24.Controls.Add(this.dtgv);
+            this.panel24.Location = new System.Drawing.Point(9, 43);
+            this.panel24.Margin = new System.Windows.Forms.Padding(4);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(851, 461);
+            this.panel24.TabIndex = 3;
+            // 
+            // txtPageIngredient
+            // 
+            this.txtPageIngredient.Location = new System.Drawing.Point(376, 422);
+            this.txtPageIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPageIngredient.Name = "txtPageIngredient";
+            this.txtPageIngredient.ReadOnly = true;
+            this.txtPageIngredient.Size = new System.Drawing.Size(99, 22);
+            this.txtPageIngredient.TabIndex = 5;
+            this.txtPageIngredient.Text = "1";
+            this.txtPageIngredient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPageIngredient.TextChanged += new System.EventHandler(this.txbPageIngredient_TextChanged);
+            // 
+            // btnNextIngredientPage
+            // 
+            this.btnNextIngredientPage.Location = new System.Drawing.Point(639, 422);
+            this.btnNextIngredientPage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNextIngredientPage.Name = "btnNextIngredientPage";
+            this.btnNextIngredientPage.Size = new System.Drawing.Size(100, 28);
+            this.btnNextIngredientPage.TabIndex = 4;
+            this.btnNextIngredientPage.Text = "Next";
+            this.btnNextIngredientPage.UseVisualStyleBackColor = true;
+            this.btnNextIngredientPage.Click += new System.EventHandler(this.btnNextIngredientPage_Click);
+            // 
+            // btnPrevioursIngredientPage
+            // 
+            this.btnPrevioursIngredientPage.Location = new System.Drawing.Point(112, 422);
+            this.btnPrevioursIngredientPage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrevioursIngredientPage.Name = "btnPrevioursIngredientPage";
+            this.btnPrevioursIngredientPage.Size = new System.Drawing.Size(100, 28);
+            this.btnPrevioursIngredientPage.TabIndex = 3;
+            this.btnPrevioursIngredientPage.Text = "Previours";
+            this.btnPrevioursIngredientPage.UseVisualStyleBackColor = true;
+            this.btnPrevioursIngredientPage.Click += new System.EventHandler(this.btnPrevioursIngredientPage_Click);
+            // 
+            // btnLastIngredientPage
+            // 
+            this.btnLastIngredientPage.Location = new System.Drawing.Point(747, 423);
+            this.btnLastIngredientPage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLastIngredientPage.Name = "btnLastIngredientPage";
+            this.btnLastIngredientPage.Size = new System.Drawing.Size(100, 28);
+            this.btnLastIngredientPage.TabIndex = 2;
+            this.btnLastIngredientPage.Text = "Last";
+            this.btnLastIngredientPage.UseVisualStyleBackColor = true;
+            this.btnLastIngredientPage.Click += new System.EventHandler(this.btnLastIngredientPage_Click);
+            // 
+            // btnFristIngredientPage
+            // 
+            this.btnFristIngredientPage.Location = new System.Drawing.Point(4, 422);
+            this.btnFristIngredientPage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFristIngredientPage.Name = "btnFristIngredientPage";
+            this.btnFristIngredientPage.Size = new System.Drawing.Size(100, 28);
+            this.btnFristIngredientPage.TabIndex = 1;
+            this.btnFristIngredientPage.Text = "First";
+            this.btnFristIngredientPage.UseVisualStyleBackColor = true;
+            this.btnFristIngredientPage.Click += new System.EventHandler(this.btnFristIngredientPage_Click);
+            // 
+            // dtgv
+            // 
+            this.dtgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv.Location = new System.Drawing.Point(4, 4);
+            this.dtgv.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgv.Name = "dtgv";
+            this.dtgv.RowHeadersWidth = 51;
+            this.dtgv.Size = new System.Drawing.Size(843, 410);
+            this.dtgv.TabIndex = 0;
+            // 
+            // panel22
+            // 
+            this.panel22.Controls.Add(this.btnViewIngredient);
+            this.panel22.Controls.Add(this.dtpkToDateIngredient);
+            this.panel22.Controls.Add(this.dtpkFromDateIngredient);
+            this.panel22.Location = new System.Drawing.Point(7, 7);
+            this.panel22.Margin = new System.Windows.Forms.Padding(4);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(851, 32);
+            this.panel22.TabIndex = 2;
+            // 
+            // btnViewIngredient
+            // 
+            this.btnViewIngredient.Location = new System.Drawing.Point(376, 0);
+            this.btnViewIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnViewIngredient.Name = "btnViewIngredient";
+            this.btnViewIngredient.Size = new System.Drawing.Size(100, 28);
+            this.btnViewIngredient.TabIndex = 2;
+            this.btnViewIngredient.Text = "Thống kê";
+            this.btnViewIngredient.UseVisualStyleBackColor = true;
+            this.btnViewIngredient.Click += new System.EventHandler(this.btnViewIngredient_Click);
+            // 
+            // dtpkToDateIngredient
+            // 
+            this.dtpkToDateIngredient.Location = new System.Drawing.Point(580, 4);
+            this.dtpkToDateIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpkToDateIngredient.Name = "dtpkToDateIngredient";
+            this.dtpkToDateIngredient.Size = new System.Drawing.Size(265, 22);
+            this.dtpkToDateIngredient.TabIndex = 1;
+            // 
+            // dtpkFromDateIngredient
+            // 
+            this.dtpkFromDateIngredient.Location = new System.Drawing.Point(4, 4);
+            this.dtpkFromDateIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpkFromDateIngredient.Name = "dtpkFromDateIngredient";
+            this.dtpkFromDateIngredient.Size = new System.Drawing.Size(265, 22);
+            this.dtpkFromDateIngredient.TabIndex = 0;
             // 
             // fAdmin
             // 
@@ -1567,8 +1745,13 @@
             this.tabPage4.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvNK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmquantity)).EndInit();
             this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvIngredient)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvNL)).EndInit();
@@ -1633,6 +1816,11 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvBill)).EndInit();
             this.tcAdmin.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv)).EndInit();
+            this.panel22.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1652,17 +1840,6 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.ComboBox cbRecipe;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.TextBox txbPageNK;
-        private System.Windows.Forms.Button btnNextNKPage;
-        private System.Windows.Forms.Button btnPrevioursNKPage;
-        private System.Windows.Forms.Button btnLastNKPage;
-        private System.Windows.Forms.Button btnFristNKPage;
-        private System.Windows.Forms.DataGridView dtgvNK;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Button btnViewNK;
-        private System.Windows.Forms.DateTimePicker dtpkToDateNK;
-        private System.Windows.Forms.DateTimePicker dtpkFromDateNK;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel36;
         private System.Windows.Forms.DataGridView dtgvNL;
@@ -1767,5 +1944,30 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Button btnNhap;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.NumericUpDown nmquantity;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.TextBox txtIngredient;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.TextBox txtidIngredient;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.DataGridView dtgvIngredient;
+        private System.Windows.Forms.Button btnXem;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.TextBox txtPageIngredient;
+        private System.Windows.Forms.Button btnNextIngredientPage;
+        private System.Windows.Forms.Button btnPrevioursIngredientPage;
+        private System.Windows.Forms.Button btnLastIngredientPage;
+        private System.Windows.Forms.Button btnFristIngredientPage;
+        private System.Windows.Forms.DataGridView dtgv;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Button btnViewIngredient;
+        private System.Windows.Forms.DateTimePicker dtpkToDateIngredient;
+        private System.Windows.Forms.DateTimePicker dtpkFromDateIngredient;
     }
 }
