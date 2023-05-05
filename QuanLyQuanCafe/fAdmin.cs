@@ -1,10 +1,12 @@
 ﻿using BanHang.DAO;
 using BanHang.DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -12,6 +14,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace BanHang
 {
@@ -55,12 +59,6 @@ namespace BanHang
             LoadFood();
             LoadListIngredient1();
             AddIngredientBinding1();
-          
-
-
-
-
-
         }
 
         #region methods
@@ -497,17 +495,16 @@ namespace BanHang
             }
         }
         //Công thức
+
         void LoadListRecipe()
         {
             RecipeList.DataSource = RecipeDAO.Instance.GetlistRecipe();
-
         }
-
         private void btnShowRecipe_Click(object sender, EventArgs e)
         {
             LoadListRecipe();
         }
-        
+
 
         void LoadIngredient()
         {
@@ -522,9 +519,42 @@ namespace BanHang
             List<Food> foods = FoodDAO.Instance.GetListFood();
             CbFood.DataSource = foods;
             CbFood.DisplayMember = "name";
-
         }
-        //Nhập nguyên liệu
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            int quantity = (int)nmNLCount.Value;
+            ListViewItem listView = new ListViewItem(CbFood.Text);
+            listView.SubItems.Add(cbRecipe.Text);
+            listView.SubItems.Add(quantity.ToString());
+            lsvNL.Items.Add(listView);
+        }
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {     
+            int idIngredient = (cbRecipe.SelectedItem as Ingredient).ID;
+            int foodID = (CbFood.SelectedItem as Food).ID;
+            int quantity = (int)nmNLCount.Value;
+            RecipeDAO.Instance.InsertRecipe(foodID, idIngredient, quantity);
+            {
+                MessageBox.Show("Đã thêm thành công");
+                LoadListRecipe();
+            }
+            lsvNL.Items.Clear();
+        }
+        private void btnDeleteRecipe_Click(object sender, EventArgs e)
+        {           
+            int id = Convert.ToInt32(dtgvRecipe.SelectedRows[0].Cells["ID"].Value);
+            if (RecipeDAO.Instance.DeleteRecipe(id))
+            {
+                MessageBox.Show("Xóa thành công");
+                LoadListRecipe();
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công");
+            }
+        }
+
+         //Nhập nguyên liệu
         void LoadListIngredient1()
         {
             IngredientList.DataSource = IngredientDAO.Instance.GetlistIngredient();
@@ -610,33 +640,7 @@ namespace BanHang
             txtPageIngredient.Text = page.ToString();
         }
 
-        //Công thức
-
-        private void btnCheck_Click_1(object sender, EventArgs e)
-        {
-            int quantity = (int)nmNLCount.Value;
-            ListViewItem listView = new ListViewItem(CbFood.Text);
-            listView.SubItems.Add(cbRecipe.Text);
-            listView.SubItems.Add(quantity.ToString());
-            lsvNL.Items.Add(listView);
-        }
-
-        //private void btnAddNew_Click(object sender, EventArgs e)
-        //{
-        //    int idFood = Convert.ToInt32(CbFood.Text);
-        //    int idIngredient = Convert.ToInt32(cbRecipe.Text);
-        //    int quantity=Convert.ToInt32(quantity.ToString());
-        //    if (RecipeDAO.Instance.InsertRecipe(idFood, idIngredient, quantity))
-        //    {
-        //        MessageBox.Show("Nhập thành công");
-        //        LoadListRecipe();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Nhập không thành công");
-        //    }
-        //}
-      
+       
     }
 }
 

@@ -241,7 +241,6 @@ namespace BanHang
                     LoadTable();
                     MessageBox.Show("Thanh toán thành công");
                 }
-
             }
         }
         private void btnSwitchTable_Click(object sender, EventArgs e)
@@ -269,10 +268,7 @@ namespace BanHang
                 if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                
                 MessageBox.Show("Bàn có người không được đổi");
-                
             }    
-
-
         }
         #endregion
     }

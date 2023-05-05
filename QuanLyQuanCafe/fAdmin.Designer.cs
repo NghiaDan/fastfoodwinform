@@ -34,6 +34,7 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.CbFood = new System.Windows.Forms.ComboBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.btnDeleteRecipe = new System.Windows.Forms.Button();
             this.btnShowRecipe = new System.Windows.Forms.Button();
             this.dtgvRecipe = new System.Windows.Forms.DataGridView();
             this.lsvNL = new System.Windows.Forms.ListView();
@@ -271,6 +272,7 @@
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.btnDeleteRecipe);
             this.panel12.Controls.Add(this.btnShowRecipe);
             this.panel12.Controls.Add(this.dtgvRecipe);
             this.panel12.Location = new System.Drawing.Point(39, 22);
@@ -278,12 +280,23 @@
             this.panel12.Size = new System.Drawing.Size(402, 464);
             this.panel12.TabIndex = 16;
             // 
+            // btnDeleteRecipe
+            // 
+            this.btnDeleteRecipe.Location = new System.Drawing.Point(178, 7);
+            this.btnDeleteRecipe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteRecipe.Name = "btnDeleteRecipe";
+            this.btnDeleteRecipe.Size = new System.Drawing.Size(93, 47);
+            this.btnDeleteRecipe.TabIndex = 18;
+            this.btnDeleteRecipe.Text = "Xóa";
+            this.btnDeleteRecipe.UseVisualStyleBackColor = true;
+            this.btnDeleteRecipe.Click += new System.EventHandler(this.btnDeleteRecipe_Click);
+            // 
             // btnShowRecipe
             // 
-            this.btnShowRecipe.Location = new System.Drawing.Point(298, 7);
+            this.btnShowRecipe.Location = new System.Drawing.Point(290, 7);
             this.btnShowRecipe.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowRecipe.Name = "btnShowRecipe";
-            this.btnShowRecipe.Size = new System.Drawing.Size(85, 34);
+            this.btnShowRecipe.Size = new System.Drawing.Size(93, 47);
             this.btnShowRecipe.TabIndex = 17;
             this.btnShowRecipe.Text = "Xem";
             this.btnShowRecipe.UseVisualStyleBackColor = true;
@@ -291,7 +304,7 @@
             // dtgvRecipe
             // 
             this.dtgvRecipe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvRecipe.Location = new System.Drawing.Point(3, 60);
+            this.dtgvRecipe.Location = new System.Drawing.Point(0, 61);
             this.dtgvRecipe.Name = "dtgvRecipe";
             this.dtgvRecipe.RowHeadersWidth = 51;
             this.dtgvRecipe.RowTemplate.Height = 24;
@@ -306,24 +319,27 @@
             this.columnHeader6});
             this.lsvNL.GridLines = true;
             this.lsvNL.HideSelection = false;
-            this.lsvNL.Location = new System.Drawing.Point(447, 83);
+            this.lsvNL.Location = new System.Drawing.Point(447, 96);
             this.lsvNL.Name = "lsvNL";
             this.lsvNL.Size = new System.Drawing.Size(415, 316);
-            this.lsvNL.TabIndex = 15;
+            this.lsvNL.TabIndex = 0;
             this.lsvNL.UseCompatibleStateImageBehavior = false;
             this.lsvNL.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Tên thức ăn";
+            this.columnHeader4.Width = 164;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Tên nguyên liệu";
+            this.columnHeader5.Width = 164;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Số lượng";
+            this.columnHeader6.Width = 75;
             // 
             // nmNLCount
             // 
@@ -355,14 +371,14 @@
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(777, 26);
+            this.btnCheck.Location = new System.Drawing.Point(774, 22);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(85, 34);
+            this.btnCheck.Size = new System.Drawing.Size(88, 50);
             this.btnCheck.TabIndex = 3;
             this.btnCheck.Text = "Thêm";
             this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click_1);
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // cbRecipe
             // 
@@ -397,7 +413,6 @@
             this.btnXem.TabIndex = 24;
             this.btnXem.Text = "Xem";
             this.btnXem.UseVisualStyleBackColor = true;
-            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
             // panel16
             // 
@@ -520,7 +535,6 @@
             this.btnNhap.TabIndex = 15;
             this.btnNhap.Text = "Nhập";
             this.btnNhap.UseVisualStyleBackColor = true;
-            this.btnNhap.Click += new System.EventHandler(this.btnNhap_Click);
             // 
             // tabPage1
             // 
@@ -1969,5 +1983,6 @@
         private System.Windows.Forms.Button btnViewIngredient;
         private System.Windows.Forms.DateTimePicker dtpkToDateIngredient;
         private System.Windows.Forms.DateTimePicker dtpkFromDateIngredient;
+        private System.Windows.Forms.Button btnDeleteRecipe;
     }
 }
