@@ -24,24 +24,25 @@ namespace  BanHang.DAO
         public List<Recipe> GetlistRecipe()
         {
             List<Recipe> list = new List<Recipe>();
-            string query = "SELECT * from recipe";
-             // " r.id,i.name AS ingredient_name, f.name AS food_name, r.quantity FROM Ingredient i INNER JOIN Recipe r ON i.id = r.idingredient INNER JOIN Food f ON f.id = r.idFood";   
+            string query = "select * from Recipe";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
                 Recipe recipe = new Recipe(item);
                 list.Add(recipe);
             }
-           
             return list;
         }
-        public bool InsertRecipe(int idFood, int idIngredient, int quantity)
+        public void InsertRecipe(int idFood, int idIngredient, int quantity)
         {
-            string query = string.Format("INSERT dbo.Recipe ( idFood, idIngredient,quantity )VALUES  ( N'{0}', {1}, {2})",Convert.ToString(idFood), Convert.ToString(idIngredient), Convert.ToString(quantity));
+            DataProvider.Instance.ExecuteNonQuery("USP_InsertRecipe @idFood , @idIngredient , @quantity", new object[] { idFood, idIngredient, quantity });
+        }
+        public bool DeleteRecipe(int id)
+        {
+            string query = string.Format("delete dbo.Recipe  where id = {0}", id);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;
         }
-
     }
 }
