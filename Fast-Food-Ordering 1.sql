@@ -26,8 +26,7 @@ CREATE TABLE [Food] (
   [id] int IDENTITY PRIMARY KEY,
   [name] nvarchar(100),
   [idCategory] int,
-  [price] float,
-  [quantity] int
+  [price] float
 )
 GO
 
@@ -213,7 +212,7 @@ INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 28, 38)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 10, 15, 11)
 ---------
 UPDATE Ingredient SET quantity = 100;
-UPDATE Food SET quantity = 100;
+UPDATE Food SET quantity = 10;
 
 --------------------------------------------------------------------------------------
 ALTER TABLE [Food] ADD FOREIGN KEY ([idCategory]) REFERENCES [FoodCategory] ([id])
@@ -358,13 +357,14 @@ BEGIN
 	DECLARE @selectRows INT = @pageRows
 	DECLARE @exceptRows INT = (@page - 1) * @pageRows;
 	
-	WITH Show AS( SELECT i.id,i.name,ie.quantity, DateCheckIn AS [Ngày vào], DateCheckOut AS [Ngày ra]
+	WITH Show AS( SELECT ie.id,i.name,ie.quantity, DateCheckIn AS [Ngày vào], DateCheckOut AS [Ngày ra]
 	FROM ImportExport ie,Ingredient i
 	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut
 	and i.id=ie.idIngredient)
 
 	select top(@selectRows)*from Show where id not in (select top (@exceptRows)id from show)
 END
+
 
 --------------------------------------------------------------------------
 --Thêm hóa đơn
@@ -586,60 +586,46 @@ begin
 	end set @strInput=replace (@strInput,' ','-')
 	return @strInput
 end
+go
 ------------------------------------------------------------
---Cập nhật số lượng thức ăn
-create trigger tr_Update_Food_Quantity
+--Cập nhật số lượng nguyen lieu sau khi khach dat mon
+--drop trigger tr_DatMon
+create trigger tr_DatMon
 on BillInfo for insert, update
 as
+declare @idFood int, @c int, @q int
 begin
-	declare @food_id int, @c int, @q int	
-
-	select @food_id = idFood, @c = count
+	select @idFood = idFood, @c = count
 	from inserted
-	
-	select @q = quantity from food where id = @food_id
 
-	if @c > @q
+	declare @temp table (
+		idNguyenLieu int,
+		slCanDung int,
+		slTonKho int
+	)
+
+	insert into @temp
+	select idIngredient, r.quantity * @c, i.quantity
+	from Recipe r, Ingredient i
+	where r.idIngredient = i.id and idFood = @idFood
+
+	if exists (select * from @temp where slCanDung > slTonKho)
 	begin
-		raiserror('So luong vuot qua so luong ton kho', 16, 1)
+		raiserror('So luong can dung vuot qua so luong ton kho', 16, 1)
 		rollback tran
-	end
-	else
-	begin
-		update Food
-		set quantity = quantity - @c
-		where id = @food_id
-	end
-end
-go
---------------------------------------
-create trigger tr_Update_Ingr_Quantity
-on Recipe for insert, update
-as
-begin
-	declare @food_id int, @ingr_id int, @ingr_q int, @q int	
-
-	select @food_id = idFood, @ingr_id = idIngredient, @ingr_q = quantity
-	from inserted
-	
-	select @q = quantity from Ingredient where id = @ingr_id
-
-	if @ingr_q > @q
-	begin
-		raiserror('So luong vuot qua so luong ton kho',16,1)
-		rollback tran
+		return
 	end
 	else
 	begin
 		update Ingredient
-		set quantity = quantity - @ingr_q
-		where id = @ingr_id
-
-		update Food
-		set quantity = quantity + 1
-		where id = @food_id
+		set quantity = quantity - (select slCanDung from @temp where idNguyenLieu = Ingredient.id)
+		where id in (select idNguyenLieu from @temp)
 	end
 end
+
+insert into BillInfo
+values (15,10,10)
+
 go
 ------------------------------------------------------------
 create proc insertRecipe @FoodID int, @IngrID int, @q int
@@ -665,7 +651,6 @@ begin
  set quantity = quantity + @quantity
  where id = @idIngre
 end
-
 ------------------------------------------
 CREATE PROC USP_InsertRecipe
 @idFood INT, @idIngredient INT, @quantity INT
@@ -673,8 +658,10 @@ AS
 Begin
 		INSERT	Recipe
         ( idFood, idIngredient, quantity )
-		VALUES  ( @idFood, -- idBill - int
-          @idIngredient, -- idFood - int
-          @quantity  -- count - int	
-          )
+		VALUES  ( @idFood,
+          @idIngredient, 
+          @quantity)
 END
+
+select i.name,f.name,r.quantity  from Recipe r,Food f,Ingredient i where r.idFood=f.id and i.id=r.idIngredient
+select * from ImportExport
