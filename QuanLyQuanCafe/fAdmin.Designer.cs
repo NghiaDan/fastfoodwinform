@@ -124,9 +124,6 @@
             this.txbSearchFoodName = new System.Windows.Forms.TextBox();
             this.btnSearchFood = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel44 = new System.Windows.Forms.Panel();
-            this.txtQuantityFood = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.nmFoodPrice = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -215,7 +212,6 @@
             this.tpFood.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel44.SuspendLayout();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmFoodPrice)).BeginInit();
             this.panel9.SuspendLayout();
@@ -528,13 +524,14 @@
             // 
             // btnNhap
             // 
-            this.btnNhap.Location = new System.Drawing.Point(774, 300);
+            this.btnNhap.Location = new System.Drawing.Point(755, 288);
             this.btnNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnNhap.Name = "btnNhap";
-            this.btnNhap.Size = new System.Drawing.Size(85, 45);
+            this.btnNhap.Size = new System.Drawing.Size(104, 57);
             this.btnNhap.TabIndex = 15;
             this.btnNhap.Text = "Nhập";
             this.btnNhap.UseVisualStyleBackColor = true;
+            this.btnNhap.Click += new System.EventHandler(this.btnNhap_Click_1);
             // 
             // tabPage1
             // 
@@ -1220,7 +1217,6 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.panel44);
             this.panel5.Controls.Add(this.panel10);
             this.panel5.Controls.Add(this.panel9);
             this.panel5.Controls.Add(this.panel8);
@@ -1230,37 +1226,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(380, 426);
             this.panel5.TabIndex = 2;
-            // 
-            // panel44
-            // 
-            this.panel44.Controls.Add(this.txtQuantityFood);
-            this.panel44.Controls.Add(this.label19);
-            this.panel44.Location = new System.Drawing.Point(4, 250);
-            this.panel44.Margin = new System.Windows.Forms.Padding(4);
-            this.panel44.Name = "panel44";
-            this.panel44.Size = new System.Drawing.Size(372, 54);
-            this.panel44.TabIndex = 5;
-            // 
-            // txtQuantityFood
-            // 
-            this.txtQuantityFood.AcceptsTab = true;
-            this.txtQuantityFood.Location = new System.Drawing.Point(121, 14);
-            this.txtQuantityFood.Margin = new System.Windows.Forms.Padding(4);
-            this.txtQuantityFood.Name = "txtQuantityFood";
-            this.txtQuantityFood.ReadOnly = true;
-            this.txtQuantityFood.Size = new System.Drawing.Size(245, 22);
-            this.txtQuantityFood.TabIndex = 2;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label19.Location = new System.Drawing.Point(4, 11);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(105, 24);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Số lượng:";
             // 
             // panel10
             // 
@@ -1810,8 +1775,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel44.ResumeLayout(false);
-            this.panel44.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmFoodPrice)).EndInit();
@@ -1919,9 +1882,6 @@
         private System.Windows.Forms.TextBox txbSearchFoodName;
         private System.Windows.Forms.Button btnSearchFood;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel44;
-        private System.Windows.Forms.TextBox txtQuantityFood;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.NumericUpDown nmFoodPrice;
         private System.Windows.Forms.Label label4;

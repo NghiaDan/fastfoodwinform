@@ -22,7 +22,7 @@ namespace BanHang.DAO
 
         public bool InsertImport(int idIngredient, int quantity)
         {
-            string query = string.Format("insert ImportExport( IdIngredient, quantity) values( {0}, {1})", idIngredient, quantity);
+            string query = string.Format("insert ImportExport( IdIngredient, quantity) values( {0}, {1})",idIngredient, quantity);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }

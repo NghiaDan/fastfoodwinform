@@ -98,7 +98,6 @@ namespace BanHang
             txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
             txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "ID", true, DataSourceUpdateMode.Never));
             nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
-            txtQuantityFood.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Quantity", true, DataSourceUpdateMode.Never));
         }
 
         void LoadCategoryIntoCombobox(ComboBox cb)
@@ -248,9 +247,8 @@ namespace BanHang
             string name = txbFoodName.Text;
             int categoryID = (cbFoodCategory.SelectedItem as Category).ID;
             float price = (float)nmFoodPrice.Value;
-            int quantity = Convert.ToInt32(txtQuantityFood.Text);
 
-            if (FoodDAO.Instance.InsertFood(name, categoryID, price, quantity))
+            if (FoodDAO.Instance.InsertFood(name, categoryID, price))
             {
                 MessageBox.Show("Thêm món thành công");
                 LoadListFood();
@@ -269,8 +267,8 @@ namespace BanHang
             int categoryID = (cbFoodCategory.SelectedItem as Category).ID;
             float price = (float)nmFoodPrice.Value;
             int id = Convert.ToInt32(txbFoodID.Text);
-            int quantity = Convert.ToInt32(txtQuantityFood.Text);
-            if (FoodDAO.Instance.UpdateFood(id, name, categoryID, price, quantity))
+            
+            if (FoodDAO.Instance.UpdateFood(id, name, categoryID, price))
             {
                 MessageBox.Show("Sửa món thành công");
                 LoadListFood();
@@ -498,7 +496,7 @@ namespace BanHang
 
         void LoadListRecipe()
         {
-            RecipeList.DataSource = RecipeDAO.Instance.GetlistRecipe();
+           RecipeList.DataSource = RecipeDAO.Instance.GetlistRecipe();
         }
         private void btnShowRecipe_Click(object sender, EventArgs e)
         {
@@ -570,9 +568,9 @@ namespace BanHang
             txtIngredient.DataBindings.Add(new Binding("Text", dtgvIngredient.DataSource, "name", true, DataSourceUpdateMode.Never));
         }
 
-        private void btnNhap_Click(object sender, EventArgs e)
+        private void btnNhap_Click_1(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32( txtidIngredient.Text);
+            int id = Convert.ToInt32(txtidIngredient.Text);
             int quantity = Convert.ToInt32(nmquantity.Text);
 
             if (ImportExportDAO.Instance.InsertImport(id, quantity))
@@ -639,8 +637,6 @@ namespace BanHang
                 page--;
             txtPageIngredient.Text = page.ToString();
         }
-
-       
     }
 }
 

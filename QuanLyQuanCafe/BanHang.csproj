@@ -67,6 +67,7 @@
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\Recipe.cs" />
     <Compile Include="DTO\Table.cs" />
+    <Compile Include="DTO\TransRecipe.cs" />
     <Compile Include="fAccountProfile.cs">
       <SubType>Form</SubType>
     </Compile>

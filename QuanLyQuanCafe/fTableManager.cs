@@ -203,7 +203,6 @@ namespace BanHang
                 MessageBox.Show("Hãy chọn bàn");
                 return;
             }
-
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int foodID = (cbFood.SelectedItem as Food).ID;
             int count = (int)nmFoodCount.Value;
@@ -250,8 +249,6 @@ namespace BanHang
             int id2 = (cbSwitchTable.SelectedItem as Table).ID;
             var status = (lsvBill.Tag as Table).Status;
             var status2 = (cbSwitchTable.SelectedItem as Table).Status;
-
-           
             if (status2=="Trống" && status=="Có người")
             {
                 if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển bàn {0} qua bàn {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
@@ -259,8 +256,6 @@ namespace BanHang
                     TableDAO.Instance.SwitchTable(id1, id2);
 
                     LoadTable();
-      
-
                 }
             }
             else if(status=="Có người" && status2=="Có người")
