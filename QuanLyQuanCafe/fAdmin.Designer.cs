@@ -1661,7 +1661,7 @@
             // 
             this.dtgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv.Location = new System.Drawing.Point(4, 4);
+            this.dtgv.Location = new System.Drawing.Point(0, 0);
             this.dtgv.Margin = new System.Windows.Forms.Padding(4);
             this.dtgv.Name = "dtgv";
             this.dtgv.RowHeadersWidth = 51;

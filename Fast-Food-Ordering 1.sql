@@ -212,7 +212,6 @@ INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 28, 38)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 10, 15, 11)
 ---------
 UPDATE Ingredient SET quantity = 100;
-UPDATE Food SET quantity = 10;
 
 --------------------------------------------------------------------------------------
 ALTER TABLE [Food] ADD FOREIGN KEY ([idCategory]) REFERENCES [FoodCategory] ([id])
@@ -328,17 +327,18 @@ BEGIN
 	AND t.id = b.idTable
 END
 --------------------------------------------------------------------------
-CREATE PROC USP_GetNumIngredientByDate
+alter PROC USP_GetNumIngredientByDate
 @checkIn date, @checkOut date
 AS 
 BEGIN
 	SELECT COUNT(*)
-	FROM ImportExport
+	FROM ImportExport ie,Ingredient i
 	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut
+	and i.id=ie.idIngredient
 END
 
 --------------------------------------------------------------------------
-alter PROC USP_GetListIngredientByDate
+create PROC USP_GetListIngredientByDate
 @checkIn date, @checkOut date
 AS 
 BEGIN
@@ -347,9 +347,9 @@ BEGIN
 	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut
 	and i.id=ie.idIngredient
 END
-
+select * from ImportExport
 --------------------------------------------------------------------------
-alter PROC USP_GetListIngredientByDateAndPage
+create PROC USP_GetListIngredientByDateAndPage
 @checkIn date, @checkOut date, @page int
 AS 
 BEGIN
@@ -362,7 +362,8 @@ BEGIN
 	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut
 	and i.id=ie.idIngredient)
 
-	select top(@selectRows)*from Show where id not in (select top (@exceptRows)id from show)
+	select top(@selectRows)* from Show where show.id not in
+	( select top (@exceptRows)id from show)
 END
 
 
@@ -637,7 +638,7 @@ end
 go
 ---------------------------------------
 --Cập nhật thêm số lượng từ import
-create trigger tr_import
+alter trigger tr_import
 on ImportExport for insert, update
 as
 declare @idIngre int, @quantity int
@@ -645,8 +646,9 @@ begin
  select @idIngre = idIngredient, @quantity = quantity
  from inserted
  update ImportExport
- set DateCheckIn=GETDATE(),
- DateCheckOut=DateCheckIn
+ set DateCheckIn=GETDATE()
+ update ImportExport
+ set DateCheckOut=DateCheckIn
  update Ingredient
  set quantity = quantity + @quantity
  where id = @idIngre
