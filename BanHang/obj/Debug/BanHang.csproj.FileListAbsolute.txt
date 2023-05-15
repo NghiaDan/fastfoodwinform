@@ -1,0 +1,14 @@
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\bin\Debug\QuanLyQuanCafe.exe.config
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\bin\Debug\QuanLyQuanCafe.exe
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\bin\Debug\QuanLyQuanCafe.pdb
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj.AssemblyReference.cache
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj.SuggestedBindingRedirects.cache
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.fAccountProfile.resources
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.fAdmin.resources
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.fLogin.resources
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.fTableManager.resources
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.Properties.Resources.resources
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj.GenerateResource.cache
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj.CoreCompileInputs.cache
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.exe
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.pdb
