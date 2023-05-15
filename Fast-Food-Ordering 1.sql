@@ -211,7 +211,7 @@ INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 2, 0)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 28, 38)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 10, 15, 11)
 ---------
-UPDATE Ingredient SET quantity = 100;
+UPDATE Ingredient SET quantity = 1000;
 
 --------------------------------------------------------------------------------------
 ALTER TABLE [Food] ADD FOREIGN KEY ([idCategory]) REFERENCES [FoodCategory] ([id])
@@ -327,7 +327,7 @@ BEGIN
 	AND t.id = b.idTable
 END
 --------------------------------------------------------------------------
-alter PROC USP_GetNumIngredientByDate
+create PROC USP_GetNumIngredientByDate
 @checkIn date, @checkOut date
 AS 
 BEGIN
@@ -380,17 +380,17 @@ BEGIN
 	          status,
 	          discount
 	        )
-	VALUES  ( GETDATE() , -- DateCheckIn - date
-	          NULL , -- DateCheckOut - date
-	          @idTable , -- idTable - int
-	          0,  -- status - int
+	VALUES  ( GETDATE() ,
+	          NULL , 
+	          @idTable ,
+	          0,  
 	          0
 	        )
 END
 
 -----------------------------------------------------
 --Chuyển bàn
-CREATE PROC USP_SwitchTabel
+alter PROC USP_SwitchTabel
 @idTable1 INT, @idTable2 int
 AS BEGIN
 
@@ -411,22 +411,10 @@ AS BEGIN
 	IF (@idFirstBill IS NULL)
 	BEGIN
 		PRINT '0000001'
-		INSERT Bill
-		        ( DateCheckIn ,
-		          DateCheckOut ,
-		          idTable ,
-		          status
-		        )
-		VALUES  ( GETDATE() , -- DateCheckIn - date
-		          NULL , -- DateCheckOut - date
-		          @idTable1 , -- idTable - int
-		          0  -- status - int
-		        )
-		        
+		INSERT Bill ( DateCheckIn , DateCheckOut ,idTable ,status)
+		VALUES  ( GETDATE() , NULL , @idTable1 , 0)
 		SELECT @idFirstBill = MAX(id) FROM Bill WHERE idTable = @idTable1 AND status = 0
-		
 	END
-	
 	SELECT @isFirstTablEmty = COUNT(*) FROM BillInfo WHERE idBill = @idFirstBill
 	
 	PRINT @idFirstBill
@@ -436,17 +424,9 @@ AS BEGIN
 	IF (@idSeconrdBill IS NULL)
 	BEGIN
 		PRINT '0000002'
-		INSERT Bill
-		        ( DateCheckIn ,
-		          DateCheckOut ,
-		          idTable ,
-		          status
-		        )
-		VALUES  ( GETDATE() , -- DateCheckIn - date
-		          NULL , -- DateCheckOut - date
-		          @idTable2 , -- idTable - int
-		          0  -- status - int
-		        )
+		INSERT Bill( DateCheckIn ,DateCheckOut ,idTable , status)
+		VALUES  ( GETDATE() ,NULL ,@idTable2 , 0  )
+
 		SELECT @idSeconrdBill = MAX(id) FROM Bill WHERE idTable = @idTable2 AND status = 0
 		
 	END
@@ -462,16 +442,15 @@ AS BEGIN
 	UPDATE BillInfo SET idBill = @idSeconrdBill WHERE idBill = @idFirstBill
 	
 	UPDATE BillInfo SET idBill = @idFirstBill WHERE id IN (SELECT * FROM IDBillInfoTable)
-	
+
 	DROP TABLE IDBillInfoTable
-	
+
 	IF (@isFirstTablEmty = 0)
 		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable2
 		
 	IF (@isSecondTablEmty= 0)
 		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable1
 END
-
 ----------------------------------------------------------------
 --Thêm thông tin hóa đơn
 CREATE PROC USP_InsertBillInfo
@@ -498,16 +477,16 @@ BEGIN
 	BEGIN
 		INSERT	BillInfo
         ( idBill, idFood, count )
-		VALUES  ( @idBill, -- idBill - int
-          @idFood, -- idFood - int
-          @count  -- count - int	
+		VALUES  ( @idBill,
+          @idFood,
+          @count 
           )
 	END
 END
 
 -------------------------------------------------------------------
 --Cập nhật thông tin hóa đơn
-Create trigger UTG_UpdateBillInfo
+create trigger UTG_UpdateBillInfo
 on BillInfo for insert, update
 as
 begin 
@@ -518,8 +497,22 @@ begin
 	declare @idtable int
 
 	select @idtable=idtable from bill where id =@idBill and status=0
-
-	update TableFood set status=N'Có người' where id=@idtable
+	declare @count int 
+	select @count=Count(*) from BillInfo where idBill=@idBill
+	if(@count>0)
+	begin 
+		print @idtable
+		print @idBill
+		print @count 
+			update TableFood set status=N'Có người' where id=@idtable
+	end
+	else
+	begin 
+		print @idtable
+		print @idBill
+		print @count 
+			update TableFood set status=N'Trống' where id=@idtable
+	end
 end
 
 -----------------------------
@@ -545,6 +538,7 @@ begin
 end
 
 --------------------------------------------
+--Xóa thông tin hóa đơn
 create trigger UTG_DeleteBillInfo
 on BillInfo for delete
 as 
@@ -590,8 +584,7 @@ end
 go
 ------------------------------------------------------------
 --Cập nhật số lượng nguyen lieu sau khi khach dat mon
---drop trigger tr_DatMon
-create trigger tr_DatMon
+create trigger UTG_AddFood
 on BillInfo for insert, update
 as
 declare @idFood int, @c int, @q int
@@ -624,21 +617,9 @@ begin
 	end
 end
 
-insert into BillInfo
-values (15,10,10)
-
-go
-------------------------------------------------------------
-create proc insertRecipe @FoodID int, @IngrID int, @q int
-as
-begin
-	insert into Recipe
-	values (@FoodID, @IngrID, @q)
-end
-go
----------------------------------------
+-----------------------------------------------------------
 --Cập nhật thêm số lượng từ import
-alter trigger tr_import
+create trigger UTG_Import
 on ImportExport for insert, update
 as
 declare @idIngre int, @quantity int
@@ -658,12 +639,14 @@ CREATE PROC USP_InsertRecipe
 @idFood INT, @idIngredient INT, @quantity INT
 AS
 Begin
-		INSERT	Recipe
-        ( idFood, idIngredient, quantity )
-		VALUES  ( @idFood,
-          @idIngredient, 
-          @quantity)
+		INSERT	Recipe( idFood, idIngredient, quantity )
+		VALUES  ( @idFood,@idIngredient, @quantity)
 END
 
-select i.name,f.name,r.quantity  from Recipe r,Food f,Ingredient i where r.idFood=f.id and i.id=r.idIngredient
-select * from ImportExport
+select * from TableFood
+create view v_importexport
+as(select * from ImportExport)
+create view v_food
+as (select * from Food)
+create view v_TableFood
+as( select * from TableFood)
