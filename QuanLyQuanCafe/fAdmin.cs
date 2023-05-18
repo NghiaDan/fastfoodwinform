@@ -258,6 +258,7 @@ namespace BanHang
             else
             {
                 MessageBox.Show("Có lỗi khi thêm thức ăn");
+                LoadListFood();
             }
         }
 
@@ -637,6 +638,18 @@ namespace BanHang
                 page--;
             txtPageIngredient.Text = page.ToString();
         }
+        //private void Quantity()
+        //{
+        //    int quantiy = Convert.ToInt32(txtQuantity.Text);
+        //    string value = dtgvRecipe.CurrentRow.Cells[2].Value.ToString();
+        //    int chuyen = int.Parse(value);
+
+        //    if (quantiy < chuyen)
+        //    {
+        //        MessageBox.Show("Cần nhập thêm");
+        //    }
+        //}
+
     }
 }
 

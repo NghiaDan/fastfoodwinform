@@ -57,6 +57,7 @@
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\RecipeDAO.cs" />
     <Compile Include="DAO\TableDAO.cs" />
+    <Compile Include="DAO\TimeKeepingDAO.cs" />
     <Compile Include="DTO\Account.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\Recipe.cs" />
     <Compile Include="DTO\Table.cs" />
+    <Compile Include="DTO\TimeKeeping.cs" />
     <Compile Include="fAccountProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +93,12 @@
     <Compile Include="fTableManager.Designer.cs">
       <DependentUpon>fTableManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="fTimeKeeping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTimeKeeping.Designer.cs">
+      <DependentUpon>fTimeKeeping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Microsoft\Reporting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fTableManager.resx">
       <DependentUpon>fTableManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fTimeKeeping.resx">
+      <DependentUpon>fTimeKeeping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

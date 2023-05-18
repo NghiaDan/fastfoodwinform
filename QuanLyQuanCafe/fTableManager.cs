@@ -1,5 +1,6 @@
 ﻿using BanHang.DAO;
 using BanHang.DTO;
+using QuanLyQuanCafe;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -204,10 +205,11 @@ namespace BanHang
                 MessageBox.Show("Hãy chọn bàn");
                 return;
             }
+
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int foodID = (cbFood.SelectedItem as Food).ID;
             int count = (int)nmFoodCount.Value;
-
+            
             if (idBill == -1)
             {
                 BillDAO.Instance.InsertBill(table.ID);
@@ -217,7 +219,6 @@ namespace BanHang
             {
                 BillInfoDAO.Instance.InsertBillInfo(idBill, foodID, count);
             }
-
             ShowBill(table.ID);
 
             LoadTable();
@@ -271,6 +272,13 @@ namespace BanHang
         }
 
         #endregion
+
+        private void chấmCôngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fTimeKeeping f = new fTimeKeeping();
+            f.ShowDialog();
+
+        }
     }
 }
 

@@ -95,7 +95,7 @@ namespace BanHang.DAO
 
         public bool ResetPassword(string name)
         {
-            string query = string.Format("update account set password = N'1962026656160185351301320480154111117132155' where UserName = N'{0}'", name);
+            string query = string.Format("update account set password = N'1' where UserName = N'{0}'", name);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;

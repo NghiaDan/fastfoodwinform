@@ -12,3 +12,4 @@ E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj
 E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.csproj.CoreCompileInputs.cache
 E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.exe
 E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.pdb
+E:\DOAN\Sieu do an nam 3\fastfoodwinform\QuanLyQuanCafe\obj\Debug\BanHang.fTimeKeeping.resources
