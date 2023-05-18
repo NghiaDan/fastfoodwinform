@@ -17,6 +17,7 @@ CREATE TABLE [TableFood] (
 )
 GO
 
+
 CREATE TABLE [FoodCategory] (
   [id] int IDENTITY PRIMARY KEY,
   [name] nvarchar(100)
@@ -593,6 +594,7 @@ end
 go
 ------------------------------------------------------------
 --Cập nhật số lượng nguyen lieu sau khi khach dat mon
+drop trigger UTG_AddFood
 create trigger UTG_AddFood
 on BillInfo for insert, update
 as
@@ -625,7 +627,55 @@ begin
 		where id in (select idNguyenLieu from @temp)
 	end
 end
+go
+----------------------------------------------------------
 
+create trigger UTG_Ingredient_After_Payment
+on BillInfo for insert, update
+as
+declare @id int, @idFood int, @c int, @old_c int, @q int
+begin
+	select @id = id, @idFood = idFood, @c = count
+	from inserted
+
+	set @old_c = 0
+
+	if exists (select * from BillInfo where id = @id)
+	begin
+		select @old_c = count
+		from deleted
+	end
+
+	print @c
+	print @old_c
+
+	declare @temp table (
+		idNguyenLieu int,
+		slCanDung int,
+		slTonKho int
+	)
+
+	insert into @temp
+	select idIngredient, r.quantity * (@c - @old_c), i.quantity
+	from Recipe r, Ingredient i
+	where r.idIngredient = i.id and idFood = @idFood
+
+	select * from @temp
+
+	if exists (select * from @temp where slCanDung > slTonKho)
+	begin
+		raiserror('So luong can dung vuot qua so luong ton kho', 16, 1)
+		rollback tran
+		return
+	end
+	else
+	begin
+		update Ingredient
+		set quantity = quantity - (select slCanDung from @temp where idNguyenLieu = Ingredient.id)
+		where id in (select idNguyenLieu from @temp)
+	end
+end
+go
 -----------------------------------------------------------
 --Cập nhật thêm số lượng từ import
 create trigger UTG_Import
@@ -651,7 +701,18 @@ Begin
 		INSERT	Recipe( idFood, idIngredient, quantity )
 		VALUES  ( @idFood,@idIngredient, @quantity)
 END
+-------------------------------------------
+CREATE PROC USP_InsertTimeKeeping
+@idAccount INT, @DateCheckIn date
+AS
+Begin
+		INSERT	TimeKeeping( idAccount, DateCheckIn )
+		VALUES  ( @idAccount,@DateCheckIn)
+		update TimeKeeping
+		set DateCheckIn=GETDATE()
+END
 ---------------------------------------------
+drop  trigger tr_Food_Name
 create trigger tr_Food_Name
 on Food for insert, update
 as
@@ -669,7 +730,7 @@ end
 go
 
 -------------------------------------------
-
+select * from TimeKeeping
 ---------------------------------------------------
 
 ----------------------------------------
@@ -750,3 +811,44 @@ AS(
 	WHERE I.id = IE.idIngredient
 	GROUP BY I.name
 	ORDER BY COUNT(*) DESC)
+----------------------------
+alter PROC USP_GetTimeKeepingListByDate
+@checkIn date
+AS 
+BEGIN
+	select a.UserName,a.DisplayName,DateCheckIn
+	from TimeKeeping t,Account a
+	where t.idAccount=a.id
+END
+go
+-----------------------------------------------
+drop  trigger tr_Ingredient
+create trigger tr_Ingredient
+on Ingredient for insert, update
+as
+begin
+	declare @n nvarchar(100), @expiryd int, @q int, @id int
+	select @id = id, @n = name, @expiryd = ExpiryDate, @q = quantity 
+	from inserted
+		
+	if exists (select * from Ingredient where id <> @id and name like @n)
+	begin
+		raiserror('Nguyen lieu da ton tai', 16, 1)
+	rollback tran
+	return
+	end
+	if @expiryd <= 0
+	begin
+		raiserror('Han su dung phai lon hon 0', 16, 1)
+	rollback tran
+	return
+	end
+	if @q <= 0
+	begin
+		raiserror('So luong phai lon hon 0', 16, 1)
+	rollback tran
+	return
+	end
+
+end
+go
