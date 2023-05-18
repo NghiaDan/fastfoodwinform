@@ -1,4 +1,6 @@
-﻿using BanHang.DAO;
+﻿using Banhang.DAO;
+using BanHang.DAO;
+using BanHang.DTO;
 using BanHang.DTO;
 using System;
 using System.Collections;
@@ -16,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BanHang
 {
@@ -179,6 +182,7 @@ namespace BanHang
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
+
             string userName = txbUserName.Text;
 
             DeleteAccount(userName);
@@ -244,11 +248,19 @@ namespace BanHang
 
         private void btnAddFood_Click(object sender, EventArgs e)
         {
+            
             string name = txbFoodName.Text;
             int categoryID = (cbFoodCategory.SelectedItem as Category).ID;
             float price = (float)nmFoodPrice.Value;
-
-            if (FoodDAO.Instance.InsertFood(name, categoryID, price))
+            List<Food> foods = FoodDAO.Instance.GetListFood();
+            
+            
+            if (foods.Any(food=>food.Name.Equals(name)))
+            {
+                MessageBox.Show("Món ăn đã tồn tại không thể thêm");
+                return;
+            }   
+            else if (FoodDAO.Instance.InsertFood(name, categoryID, price))
             {
                 MessageBox.Show("Thêm món thành công");
                 LoadListFood();
@@ -468,7 +480,13 @@ namespace BanHang
             float price = (float)nmNLPrice.Value;
             int expiryDate = (int)nmHsdNL.Value;
             int quantity = Convert.ToInt32(txtQuantity.Text);
+            List<Ingredient> ingredients = IngredientDAO.Instance.GetlistIngredient();
 
+            if (ingredients.Any(Ingredient => Ingredient.Name.Equals(name)))
+            {
+                MessageBox.Show("Nguyên liệu đã tồn tại không thể thêm");
+                return;
+            }
             if (IngredientDAO.Instance.InsertIngredient(name, price, expiryDate, quantity))
             {
                 MessageBox.Show("Thêm nguyên liệu thành công");
@@ -638,18 +656,23 @@ namespace BanHang
                 page--;
             txtPageIngredient.Text = page.ToString();
         }
-        //private void Quantity()
-        //{
-        //    int quantiy = Convert.ToInt32(txtQuantity.Text);
-        //    string value = dtgvRecipe.CurrentRow.Cells[2].Value.ToString();
-        //    int chuyen = int.Parse(value);
-
-        //    if (quantiy < chuyen)
-        //    {
-        //        MessageBox.Show("Cần nhập thêm");
-        //    }
-        //}
-
+        
+        //Chấm công
+        void LoadDateTimePickerKeeping()
+        {
+            DateTime today = DateTime.Now;
+            dateTimePicker2.Value = new DateTime(today.Year, today.Month, 1);
+            
+        }
+        void LoadTimeKeepingListByDate(DateTime DateCheckIn)
+        {
+            dtgvTimeKeeping.DataSource= TimeKeepingDAO.Instance.GetTimeKeepingListByDate(DateCheckIn);
+        }
+        
+        private void btnKeeping_Click(object sender, EventArgs e)
+        {
+            LoadTimeKeepingListByDate(dtpkFromDateIngredient.Value);
+        }
     }
 }
 

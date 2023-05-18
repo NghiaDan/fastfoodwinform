@@ -64,9 +64,6 @@ namespace BanHang.DAO
             return result > 0;
         }
 
-
-
-
     }
   
 }

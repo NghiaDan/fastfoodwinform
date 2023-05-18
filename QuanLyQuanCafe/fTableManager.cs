@@ -1,6 +1,6 @@
 ﻿using BanHang.DAO;
 using BanHang.DTO;
-using QuanLyQuanCafe;
+using BanHang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +13,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace BanHang
 {
     public partial class fTableManager : Form
     {
+
         private Account loginAccount;
 
         public Account LoginAccount
@@ -30,7 +32,7 @@ namespace BanHang
             InitializeComponent();
 
             this.LoginAccount = acc;
-
+            
             LoadTable();
             LoadCategory();
             LoadComboboxTable(cbSwitchTable);
@@ -41,6 +43,7 @@ namespace BanHang
         void ChangeAccount(int type)
         {
             adminToolStripMenuItem.Enabled = type == 1;
+            chấmCôngToolStripMenuItem.Enabled = type == 0;
             thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
         }
         void LoadCategory()
@@ -208,8 +211,9 @@ namespace BanHang
 
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int foodID = (cbFood.SelectedItem as Food).ID;
-            int count = (int)nmFoodCount.Value;
-            
+            int count = (int)nmFoodCount.Value;    
+
+
             if (idBill == -1)
             {
                 BillDAO.Instance.InsertBill(table.ID);

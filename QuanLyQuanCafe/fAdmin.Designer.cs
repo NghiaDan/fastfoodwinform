@@ -168,6 +168,18 @@
             this.btnViewIngredient = new System.Windows.Forms.Button();
             this.dtpkToDateIngredient = new System.Windows.Forms.DateTimePicker();
             this.dtpkFromDateIngredient = new System.Windows.Forms.DateTimePicker();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel37 = new System.Windows.Forms.Panel();
+            this.btnKeeping = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.panel38 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dtgvTimeKeeping = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.USP_GetListBillByDateForReportBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -229,6 +241,10 @@
             this.panel24.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
             this.panel22.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.panel37.SuspendLayout();
+            this.panel38.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).BeginInit();
             this.SuspendLayout();
             // 
             // USP_GetListBillByDateForReportBindingSource
@@ -1568,6 +1584,7 @@
             this.tcAdmin.Controls.Add(this.tabPage4);
             this.tcAdmin.Controls.Add(this.tabPage5);
             this.tcAdmin.Controls.Add(this.tabPage2);
+            this.tcAdmin.Controls.Add(this.tabPage3);
             this.tcAdmin.Location = new System.Drawing.Point(16, 15);
             this.tcAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.tcAdmin.Name = "tcAdmin";
@@ -1706,6 +1723,132 @@
             this.dtpkFromDateIngredient.Size = new System.Drawing.Size(265, 22);
             this.dtpkFromDateIngredient.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.panel38);
+            this.tabPage3.Controls.Add(this.panel37);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(869, 511);
+            this.tabPage3.TabIndex = 11;
+            this.tabPage3.Text = "Bảng chấm công";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // panel37
+            // 
+            this.panel37.Controls.Add(this.btnKeeping);
+            this.panel37.Controls.Add(this.dateTimePicker1);
+            this.panel37.Controls.Add(this.dateTimePicker2);
+            this.panel37.Location = new System.Drawing.Point(7, 7);
+            this.panel37.Margin = new System.Windows.Forms.Padding(4);
+            this.panel37.Name = "panel37";
+            this.panel37.Size = new System.Drawing.Size(851, 32);
+            this.panel37.TabIndex = 3;
+            // 
+            // btnKeeping
+            // 
+            this.btnKeeping.Location = new System.Drawing.Point(376, 0);
+            this.btnKeeping.Margin = new System.Windows.Forms.Padding(4);
+            this.btnKeeping.Name = "btnKeeping";
+            this.btnKeeping.Size = new System.Drawing.Size(100, 28);
+            this.btnKeeping.TabIndex = 2;
+            this.btnKeeping.Text = "Thống kê";
+            this.btnKeeping.UseVisualStyleBackColor = true;
+            this.btnKeeping.Click += new System.EventHandler(this.btnKeeping_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(580, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker1.TabIndex = 1;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(4, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker2.TabIndex = 0;
+            // 
+            // panel38
+            // 
+            this.panel38.Controls.Add(this.textBox1);
+            this.panel38.Controls.Add(this.button2);
+            this.panel38.Controls.Add(this.button3);
+            this.panel38.Controls.Add(this.button4);
+            this.panel38.Controls.Add(this.button5);
+            this.panel38.Controls.Add(this.dtgvTimeKeeping);
+            this.panel38.Location = new System.Drawing.Point(7, 46);
+            this.panel38.Margin = new System.Windows.Forms.Padding(4);
+            this.panel38.Name = "panel38";
+            this.panel38.Size = new System.Drawing.Size(851, 461);
+            this.panel38.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(376, 422);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(99, 22);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "1";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(639, 422);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Next";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(112, 422);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Previours";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(747, 423);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 28);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Last";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(4, 422);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 28);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "First";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // dtgvTimeKeeping
+            // 
+            this.dtgvTimeKeeping.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvTimeKeeping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvTimeKeeping.Location = new System.Drawing.Point(0, 0);
+            this.dtgvTimeKeeping.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvTimeKeeping.Name = "dtgvTimeKeeping";
+            this.dtgvTimeKeeping.RowHeadersWidth = 51;
+            this.dtgvTimeKeeping.Size = new System.Drawing.Size(843, 410);
+            this.dtgvTimeKeeping.TabIndex = 0;
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1798,13 +1941,17 @@
             this.panel24.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).EndInit();
             this.panel22.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.panel37.ResumeLayout(false);
+            this.panel38.ResumeLayout(false);
+            this.panel38.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
       //  private Microsoft.Reporting.WinForms.ReportViewer rpViewer;
-        private System.Windows.Forms.BindingSource USP_GetTableListBindingSource;
         private System.Windows.Forms.BindingSource USP_GetListBillByDateForReportBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TabPage tabPage5;
@@ -1944,5 +2091,17 @@
         private System.Windows.Forms.DateTimePicker dtpkToDateIngredient;
         private System.Windows.Forms.DateTimePicker dtpkFromDateIngredient;
         private System.Windows.Forms.Button btnDeleteRecipe;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Panel panel38;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridView dtgvTimeKeeping;
+        private System.Windows.Forms.Panel panel37;
+        private System.Windows.Forms.Button btnKeeping;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
