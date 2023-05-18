@@ -2,7 +2,8 @@
 use db1
 
 CREATE TABLE [Account] (
-  [UserName] nvarchar(100) PRIMARY KEY,
+  [id] int identity PRIMARY KEY,
+  [UserName] nvarchar(100),
   [DisplayName] nvarchar(100),
   [Password] nvarchar(100),
   [Type] int
@@ -74,8 +75,15 @@ CREATE TABLE [BillInfo] (
   [count] int
 )
 GO
+
+CREATE TABLE [TimeKeeping](
+	[id] int identity primary key,
+	[idAccount] int,
+	[DateCheckIn] date,
+)
 --------------------------------------------------------------------------------------
 INSERT [dbo].[Account] ([UserName],[DisplayName],[Password],[Type]) VALUES ('nghia', N'Nghĩa Đặng',1,1)
+
 --
 INSERT [dbo].[FoodCategory] ([name]) VALUES ( N'Đồ ăn')
 INSERT [dbo].[FoodCategory] ([name]) VALUES ( N'Nước uống')
@@ -235,6 +243,8 @@ GO
 ALTER TABLE [ImportExport] ADD FOREIGN KEY ([idIngredient]) REFERENCES [Ingredient] ([id])
 GO
 
+ALTER TABLE [Timekeeping] ADD FOREIGN KEY ([idAccount]) REFERENCES [Account] ([id])
+GO
 ----------------------------------
 --Lấy dữ liệu danh sách bàn
 CREATE PROC USP_GetTableList
@@ -498,7 +508,7 @@ begin
 
 	select @idtable=idtable from bill where id =@idBill and status=0
 	declare @count int 
-	select @count=Count(*) from BillInfo where idBill=@idBill
+	select @count=Count(*) from BillInfo where idBill=@idBill	
 	if(@count>0)
 	begin 
 		print @idtable
@@ -567,13 +577,12 @@ begin
 	if @strInput=''return @strInput 
 	declare @rt nvarchar(400)
 	declare @sign_chars nchar(136) 
-	declare @unsign_chars nchar(136) set @sign_chars=N' '+nchar(272)+nchar(208) set @unsign_chars=N''
+	declare @unsign_chars nchar(136) set @sign_chars=N'ăâđêôơưàáảã '+nchar(272)+nchar(208) set @unsign_chars=N'aadeoouaaaa'
 
 	declare @counter int 
 	declare @counter1 int set @counter=1 while (@counter<=LEN(@strInput)) 
 	begin set @counter1=1 while(@counter1<=LEN(@sign_chars)+1)
-	begin if UNICODE(SUBSTRING(@sign_chars,@counter1,1))
-=Unicode(SUBSTRING(@strInput,@counter,1) )begin if @counter=1 set @strInput=SUBSTRING(@strInput,1,@counter-1)
+	begin if UNICODE(SUBSTRING(@sign_chars,@counter1,1)) =Unicode(SUBSTRING(@strInput,@counter,1) )begin if @counter=1 set @strInput=SUBSTRING(@strInput,1,@counter-1)
 	+SUBSTRING(@unsign_chars,@counter1,1)
 	+SUBSTRING(@strInput,@counter+1,len(@strInput-@counter))
 	break end set @counter1=@counter1+1
@@ -642,7 +651,28 @@ Begin
 		INSERT	Recipe( idFood, idIngredient, quantity )
 		VALUES  ( @idFood,@idIngredient, @quantity)
 END
+---------------------------------------------
+create trigger tr_Food_Name
+on Food for insert, update
+as
+begin
+	declare @n nvarchar(100)
+	select @n = name from inserted
 
+	if exists (select * from Food where name like @n)
+	begin
+		raiserror('Mon an da ton tai', 16, 1)
+		rollback tran
+		return
+	end
+end
+go
+
+-------------------------------------------
+
+---------------------------------------------------
+
+----------------------------------------
 select * from TableFood
 create view v_importexport
 as(select * from ImportExport)
@@ -650,3 +680,73 @@ create view v_food
 as (select * from Food)
 create view v_TableFood
 as( select * from TableFood)
+--Xuất tổng doanh thu theo ngày
+CREATE VIEW V_ProfitOfDate 
+AS 
+SELECT DateCheckIn AS 'Ngày', SUM(totalPrice) AS 'Tổng doanh thu'
+FROM Bill
+GROUP BY DateCheckIn
+
+----------------------------------
+--Xuất tổng số lượt đặt theo món ăn
+CREATE VIEW V_FoodSold 
+AS
+SELECT F.name, SUM([COUNT]) AS 'Tổng lượt đặt'
+FROM Food F, BillInfo BI
+WHERE F.id = BI.idFood
+GROUP BY F.name
+
+----------------------------------
+--Xuất danh sách nguyên liệu hiện đã dùng hết trong kho
+CREATE VIEW V_IngreOutOfStock 
+AS
+SELECT	*
+FROM Ingredient
+WHERE quantity = 0
+-----------------------------------------------------------
+--Xuất danh sách những bàn đang trống
+CREATE VIEW V_AvailTable
+AS
+(
+	SELECT *
+	FROM TableFood
+	WHERE status = N'Trống'
+)
+--Xuất danh sách những bàn đang có người
+CREATE VIEW V_UnavailTable
+AS
+(
+	SELECT *
+	FROM TableFood
+	WHERE status = N'Có người')
+--Xuất danh sách tổng số hóa đơn đã lập theo tháng
+CREATE VIEW V_EmpOfBill
+AS
+(
+	SELECT MONTH(DateCheckIn) AS 'Tháng', COUNT(id) AS 'Tổng số hóa đơn'
+	FROM Bill
+	GROUP BY MONTH(DateCheckIn))
+
+--Xuất danh sách hóa đơn được giảm giá
+CREATE VIEW V_DiscountBill
+AS
+(
+	SELECT id, discount
+	FROM Bill
+	WHERE discount IS NOT NULL
+	OR discount > 0)
+--Xuất danh sách tổng nhân viên trực trong ngày hiện tại
+CREATE VIEW V_EmpThisDay
+AS
+(
+	SELECT COUNT(*) AS 'Số nhân viên'
+	FROM Timekeeping
+	WHERE DateCheckIn = GETDATE())
+--Xuất tên nguyên liệu được nhập kho nhiều lần nhất
+CREATE VIEW V_TopImportIngre
+AS(
+	SELECT TOP 1 I.name, COUNT(*) AS N'Số lần nhập kho'
+	FROM Ingredient I, ImportExport IE
+	WHERE I.id = IE.idIngredient
+	GROUP BY I.name
+	ORDER BY COUNT(*) DESC)
