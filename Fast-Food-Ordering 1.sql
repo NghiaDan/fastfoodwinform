@@ -1,14 +1,39 @@
 ﻿create database db1
 use db1
 
+
+CREATE TABLE [Job] (
+  [id] int identity PRIMARY KEY,
+  [name] nvarchar(100),
+  [salary] int
+)
+
+CREATE TABLE [Shift] (
+  [id] int identity PRIMARY KEY,
+  [Name] nvarchar(100),
+  [StartTime] varchar(7),
+  [EndTime] varchar(7)
+)
+
+CREATE TABLE [Staff] (
+  [id] int identity PRIMARY KEY,
+  [FirstName] nvarchar(100),
+  [LastName] nvarchar(20),
+  [Gender] nvarchar(5),
+  [Email] varchar(100),
+  [City] nvarchar(50),
+  [Phone] varchar(12),
+  [idJob] int 
+)
+
 CREATE TABLE [Account] (
   [id] int identity PRIMARY KEY,
   [UserName] nvarchar(100),
   [DisplayName] nvarchar(100),
   [Password] nvarchar(100),
-  [Type] int
+  [Type] int,		--1: Admin | 0: Staff
+  [idStaff] int
 )
-GO
 
 CREATE TABLE [TableFood] (
   [id] int IDENTITY PRIMARY KEY,
@@ -80,8 +105,11 @@ GO
 CREATE TABLE [TimeKeeping](
 	[id] int identity primary key,
 	[idAccount] int,
-	[DateCheckIn] date,
+	[DateCheckIn] date, 
+	[TimeCheckIn] varchar(7),	--SELECT RIGHT(CONVERT(VARCHAR, GETDATE(), 100),7)
+	[idShift] int				--tạo 4 checkbox cho 4 ca
 )
+
 --------------------------------------------------------------------------------------
 INSERT [dbo].[Account] ([UserName],[DisplayName],[Password],[Type]) VALUES ('nghia', N'Nghĩa Đặng',1,1)
 
@@ -219,6 +247,39 @@ INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 21, 1)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 2, 0)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 9, 28, 38)
 INSERT [dbo].[Recipe] ([idFood], [idIngredient], [quantity]) VALUES ( 10, 15, 11)
+
+------------------------------------------
+SET IDENTITY_INSERT [dbo].[Job] ON 
+INSERT [dbo].[Job] ([id], [name], [salary]) VALUES (0, N'admin', 1111111)
+INSERT [dbo].[Job] ([id], [name], [salary]) VALUES (1, N'Nhân viên bán hàng', 1500000)
+INSERT [dbo].[Job] ([id], [name], [salary]) VALUES (2, N'Nhân viên chế biến', 1800000)
+INSERT [dbo].[Job] ([id], [name], [salary]) VALUES (3, N'Nhân viên kho', 1200000)
+SET IDENTITY_INSERT [dbo].[Job] OFF
+GO
+
+-----------------------
+SET IDENTITY_INSERT [dbo].[Staff] ON 
+
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender],  [Email], [City], [Phone],  [idJob]) VALUES (1, N'Phạm Trần Bình', N'An', N'Nữ', N'dk.jain@posoco.in', N'Thanh Hóa', 0123456, 1)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender], [Email], [City], [Phone],  [idJob]) VALUES (2, N'Đàm Phương', N'Anh', N'Nữ',  N'gopalmitra@posoco.in', N'Phú Thọ', 0123147258, 1)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender],  [Email], [City], [Phone],  [idJob]) VALUES (3, N'Hồ Thị Kiều', N'Anh', N'Nữ',  N'surajit.banerjee@posoco.in', N'Bắc Ninh', 0123456, 2)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender],  [Email], [City], [Phone],  [idJob]) VALUES (4, N'Khổng Hoàng', N'Anh', N'Nữ',  N'sukumar@posoco.in', N'Hải Dương', 0148532, 2)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender],  [Email], [City], [Phone],  [idJob]) VALUES (5, N'Lê Trần Bảo', N'Anh', N'Nữ',  N'skmukh@posoco.in', N'Hà Nội', 01394857,  1)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender], [Email], [City], [Phone],  [idJob]) VALUES (6, N'Lê Trịnh Duyên', N'Anh', N'Nữ',  N'spbarnwal@posoco.in', N'Hà Nam', 03125794, 1)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender], [Email], [City], [Phone],  [idJob]) VALUES (7, N'Nguyễn Ngọc Bảo', N'Anh', N'Nữ',  N'konar_s@posoco.in', N'Hà Tây', 0316825794, 2)
+INSERT [dbo].[Staff] ([id], [FirstName], [LastName], [Gender], [Email], [City], [Phone],  [idJob]) VALUES (8, N'Nguyễn Thị Phương', N'Anh', N'Nữ',  N'anpal@posoco.in', N'Hải Dương', 031259454,  3)
+SET IDENTITY_INSERT [dbo].[Staff] OFF
+GO
+
+--------------------------.
+SET IDENTITY_INSERT [dbo].[Shift] ON 
+
+INSERT [dbo].[Shift] ([id], [Name], [StartTime], [EndTime]) VALUES (1, N'Ca 1', N'6:00AM', N'9:30AM')
+INSERT [dbo].[Shift] ([id], [Name], [StartTime], [EndTime]) VALUES (2, N'Ca 2', N'9:30AM', N'12:00AM')
+INSERT [dbo].[Shift] ([id], [Name], [StartTime], [EndTime]) VALUES (3, N'Ca 3', N'12:00AM', N'15:30PM')
+INSERT [dbo].[Shift] ([id], [Name], [StartTime], [EndTime]) VALUES (4, N'Ca 4', N'15:30PM', N'18:00PM')
+SET IDENTITY_INSERT [dbo].[Shift] OFF
+GO
 ---------
 UPDATE Ingredient SET quantity = 1000;
 
@@ -245,6 +306,18 @@ ALTER TABLE [ImportExport] ADD FOREIGN KEY ([idIngredient]) REFERENCES [Ingredie
 GO
 
 ALTER TABLE [Timekeeping] ADD FOREIGN KEY ([idAccount]) REFERENCES [Account] ([id])
+GO
+
+ALTER TABLE [Timekeeping] ADD FOREIGN KEY ([idAccount]) REFERENCES [Account] ([id])
+GO
+
+ALTER TABLE [Timekeeping] ADD FOREIGN KEY ([idShift]) REFERENCES [Shift] ([id])
+GO
+
+ALTER TABLE [Staff] ADD FOREIGN KEY ([idJob]) REFERENCES [Job] ([id])
+GO
+
+ALTER TABLE [Account] ADD FOREIGN KEY ([idStaff]) REFERENCES [Staff] ([id])
 GO
 ----------------------------------
 --Lấy dữ liệu danh sách bàn
@@ -358,7 +431,6 @@ BEGIN
 	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut
 	and i.id=ie.idIngredient
 END
-select * from ImportExport
 --------------------------------------------------------------------------
 create PROC USP_GetListIngredientByDateAndPage
 @checkIn date, @checkOut date, @page int
@@ -401,7 +473,7 @@ END
 
 -----------------------------------------------------
 --Chuyển bàn
-alter PROC USP_SwitchTabel
+create PROC USP_SwitchTabel
 @idTable1 INT, @idTable2 int
 AS BEGIN
 
@@ -702,15 +774,6 @@ Begin
 		VALUES  ( @idFood,@idIngredient, @quantity)
 END
 -------------------------------------------
-CREATE PROC USP_InsertTimeKeeping
-@idAccount INT, @DateCheckIn date
-AS
-Begin
-		INSERT	TimeKeeping( idAccount, DateCheckIn )
-		VALUES  ( @idAccount,@DateCheckIn)
-		update TimeKeeping
-		set DateCheckIn=GETDATE()
-END
 ---------------------------------------------
 drop  trigger tr_Food_Name
 create trigger tr_Food_Name
@@ -730,11 +793,10 @@ end
 go
 
 -------------------------------------------
-select * from TimeKeeping
+
 ---------------------------------------------------
 
 ----------------------------------------
-select * from TableFood
 create view v_importexport
 as(select * from ImportExport)
 create view v_food
@@ -822,7 +884,6 @@ BEGIN
 END
 go
 -----------------------------------------------
-drop  trigger tr_Ingredient
 create trigger tr_Ingredient
 on Ingredient for insert, update
 as
@@ -838,6 +899,7 @@ begin
 	return
 	end
 	if @expiryd <= 0
+
 	begin
 		raiserror('Han su dung phai lon hon 0', 16, 1)
 	rollback tran
@@ -852,3 +914,7 @@ begin
 
 end
 go
+
+select UserName,DisplayName,Type,s.FirstName,s.LastName from Account a, Staff s
+where a.idStaff=s.id
+select * from Account

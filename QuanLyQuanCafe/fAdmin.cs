@@ -1,7 +1,7 @@
-﻿using Banhang.DAO;
+﻿
 using BanHang.DAO;
 using BanHang.DTO;
-using BanHang.DTO;
+using QuanLyQuanCafe;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +30,8 @@ namespace BanHang
         BindingSource IngredientList = new BindingSource();
         BindingSource RecipeList = new BindingSource();
         BindingSource Ingredient = new BindingSource();
+        BindingSource StaffList = new BindingSource();
+        BindingSource JobList = new BindingSource();
         public Account loginAccount;
         public fAdmin()
         {
@@ -44,6 +46,8 @@ namespace BanHang
             dtgvNL.DataSource = IngredientList;
             dtgvRecipe.DataSource = RecipeList;
             dtgvIngredient.DataSource = IngredientList;
+            dtgvStaff.DataSource = StaffList;
+            dtgvjob.DataSource = JobList;
             LoadDateTimePickerBill();
             LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
             LoadDateTimePickerIngredient();
@@ -62,6 +66,10 @@ namespace BanHang
             LoadFood();
             LoadListIngredient1();
             AddIngredientBinding1();
+            LoadListStaff();
+            AddStaffBinding();
+            LoadListJob();
+            AddBingdingJob();
         }
 
         #region methods
@@ -109,10 +117,10 @@ namespace BanHang
             cb.DisplayMember = "Name";
         }
 
-
-        void AddAccount(string userName, string displayName, int type)
+      //trang tài khoản
+        void AddAccount(string userName, string displayName, int type,int idStaff )
         {
-            if (AccountDAO.Instance.InsertAccount(userName, displayName, type))
+            if (AccountDAO.Instance.InsertAccount(userName, displayName, type,idStaff))
             {
                 MessageBox.Show("Thêm tài khoản thành công");
             }
@@ -171,13 +179,15 @@ namespace BanHang
         #endregion
         //trang account
         #region events
+
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
             string userName = txbUserName.Text;
             string displayName = txbDisplayName.Text;
             int type = (int)numericUpDown1.Value;
+            int idStaff = Convert.ToInt32(txbMa.Text);
 
-            AddAccount(userName, displayName, type);
+            AddAccount(userName, displayName, type, idStaff);
         }
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
@@ -656,24 +666,150 @@ namespace BanHang
                 page--;
             txtPageIngredient.Text = page.ToString();
         }
-        
-        //Chấm công
-        void LoadDateTimePickerKeeping()
+
+        //Nhân viên
+        void LoadListStaff()
         {
-            DateTime today = DateTime.Now;
-            dateTimePicker2.Value = new DateTime(today.Year, today.Month, 1);
-            
+            StaffList.DataSource = StaffDAO.Instance.GetlistStaff();
         }
-        void LoadTimeKeepingListByDate(DateTime DateCheckIn)
+
+        private void btnViewStaff_Click(object sender, EventArgs e)
         {
-            dtgvTimeKeeping.DataSource= TimeKeepingDAO.Instance.GetTimeKeepingListByDate(DateCheckIn);
+            LoadListStaff();
         }
-        
-        private void btnKeeping_Click(object sender, EventArgs e)
+
+        void AddStaffBinding()
         {
-            LoadTimeKeepingListByDate(dtpkFromDateIngredient.Value);
+            txbMaNV.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txbHo.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "firstname", true, DataSourceUpdateMode.Never));
+            txbTen.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "lastname", true, DataSourceUpdateMode.Never));
+            txbGioitinh.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "gender", true, DataSourceUpdateMode.Never));
+            txbEmail.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "email", true, DataSourceUpdateMode.Never));
+            txbDienthoai.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "Phone", true, DataSourceUpdateMode.Never));
+            txbDiachi.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "city", true, DataSourceUpdateMode.Never));
+            txbMaJob.DataBindings.Add(new Binding("Text", dtgvStaff.DataSource, "idJob", true, DataSourceUpdateMode.Never));
         }
-    }
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+           
+            string firstname = txbHo.Text;
+            string lastname = txbTen.Text;
+            string gender=txbGioitinh.Text;
+            string email = txbEmail.Text;
+            string dichi=txbDiachi.Text;
+            string dienthoai = txbDienthoai.Text;
+            int idjob=Convert.ToInt32(txbMaJob.Text);
+            if (StaffDAO.Instance.InsertStaff( firstname, lastname, gender, email, dichi, dienthoai,idjob))
+            {
+                MessageBox.Show("Đã thêm nhân viên");
+                LoadListStaff();
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi thêm");
+            }
+        }
+
+        private void btnDeleteStaff_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbMaNV.Text);
+
+            if (StaffDAO.Instance.DeleteStaff(id))
+            {
+                MessageBox.Show("Xóa nhân viên thành công");
+                LoadListStaff();
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công");
+            }
+        }
+
+        private void btnEditStaff_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbMaJob.Text);
+            string firstname = txbHo.Text;
+            string lastname = txbTen.Text;
+            string gender = txbGioitinh.Text;
+            string email = txbEmail.Text;
+            string dichi = txbDiachi.Text;
+            string dienthoai = txbDienthoai.Text;
+            int idjob = Convert.ToInt32(txbMaJob.Text);
+
+            if (StaffDAO.Instance.UpdateStaff(firstname, lastname, gender, email, dichi, dienthoai, idjob,id))
+                {
+                    MessageBox.Show("Sửa thành công");
+                    LoadListStaff();
+                }
+            else
+                {
+                    MessageBox.Show("Sửa không thành công");
+                }
+         }
+
+        // Công việc
+        void LoadListJob()
+        {
+            JobList.DataSource = JobDAO.Instance.GetlistJob();
+        }
+        private void btnViewJob_Click(object sender, EventArgs e)
+        {
+            LoadListJob();
+        }
+        void AddBingdingJob()
+        {
+            txbIdJob.DataBindings.Add(new Binding("Text", dtgvjob.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txbnamejob.DataBindings.Add(new Binding("Text", dtgvjob.DataSource, "name", true, DataSourceUpdateMode.Never));
+            txbluongjob.DataBindings.Add(new Binding("Text", dtgvjob.DataSource, "salary", true, DataSourceUpdateMode.Never));
+        }
+        private void btnAddJob_Click(object sender, EventArgs e)
+        {
+            string name = txbnamejob.Text;
+            int luong = Convert.ToInt32( txbluongjob.Text);
+ 
+            if (JobDAO.Instance.InsertJob( name, luong))
+            {
+                MessageBox.Show("Đã thêm công việc");
+                LoadListJob();
+            }
+            else
+            {
+                MessageBox.Show("Công việc không thêm được");
+            }
+        }
+
+        private void btnDeleteJob_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbIdJob.Text);
+
+            if (JobDAO.Instance.DeleteJob(id))
+            {
+                MessageBox.Show("Xóa công việc thành công");
+                LoadListJob();
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công");
+            }
+        }
+
+        private void btnEditJob_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbIdJob.Text);
+            string name = txbnamejob.Text;
+            int luong = Convert.ToInt32(txbluongjob.Text);
+
+            if (JobDAO.Instance.UpdateJob(name, luong,id))
+            {
+                MessageBox.Show("Đã thêm công việc");
+                LoadListJob();
+            }
+            else
+            {
+                MessageBox.Show("Công việc không thêm được");
+            }
+        }
+    }    
 }
 
 

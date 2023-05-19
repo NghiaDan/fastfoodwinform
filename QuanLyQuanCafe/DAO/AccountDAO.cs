@@ -22,21 +22,7 @@ namespace BanHang.DAO
         private AccountDAO() { }
 
         public bool Login(string userName, string passWord)
-        {
-            //byte[] temp = ASCIIEncoding.ASCII.GetBytes(passWord);
-            //byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
-
-
-
-            //string hasPass = "";
-
-            //foreach (byte item in hasData)
-            //{
-            //    hasPass += item;
-            //}
-            //var list = hasData.ToString();
-            //list.Reverse();
-
+        { 
             string query = "USP_Login @userName , @passWord";
              
             DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { userName, passWord /*list*/});
@@ -54,13 +40,25 @@ namespace BanHang.DAO
 
         public DataTable GetListAccount()
         {
-            return DataProvider.Instance.ExecuteQuery("SELECT UserName, DisplayName, Type FROM dbo.Account");
+            return DataProvider.Instance.ExecuteQuery("SELECT UserName, DisplayName, Type, idStaff FROM dbo.Account");
         }
 
+        public List<Account> GetAccount()
+        {
+            List<Account> accounts = new List<Account>();
+
+            string query = "select * from Account";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Account account = new Account(item);
+                accounts.Add(account);
+            }
+            return accounts;
+        }
         public Account GetAccountByUserName(string userName)
         {
-            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from account where userName = '" + userName + "'");
-
+            DataTable data = DataProvider.Instance.ExecuteQuery("select * from Account  where   userName = '" + userName + "'");
             foreach (DataRow item in data.Rows)
             {
                 return new Account(item);
@@ -69,9 +67,13 @@ namespace BanHang.DAO
             return null;
         }
 
-        public bool InsertAccount(string name, string displayName, int type)
+       
+
+
+
+        public bool InsertAccount(string name, string displayName, int type,int idStaff)
         {
-            string query = string.Format("INSERT dbo.Account ( UserName, DisplayName, Type, password )VALUES  ( N'{0}', N'{1}', {2}, N'{3}')", name, displayName, type, "1962026656160185351301320480154111117132155");
+            string query = string.Format("INSERT dbo.Account ( UserName, DisplayName, Type, password,idStaff )VALUES  ( N'{0}', N'{1}', {2}, N'{3}',N'{4}')", name, displayName, type, "1",idStaff);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;

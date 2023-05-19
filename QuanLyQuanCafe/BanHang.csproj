@@ -54,8 +54,11 @@
     <Compile Include="DAO\FoodDAO.cs" />
     <Compile Include="DAO\ImportExportDAO.cs" />
     <Compile Include="DAO\IngredientDAO.cs" />
+    <Compile Include="DAO\JobDAO.cs" />
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\RecipeDAO.cs" />
+    <Compile Include="DAO\ShiftDAO.cs" />
+    <Compile Include="DAO\StaffDAO.cs" />
     <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="DAO\TimeKeepingDAO.cs" />
     <Compile Include="DTO\Account.cs" />
@@ -65,8 +68,11 @@
     <Compile Include="DTO\Food.cs" />
     <Compile Include="DTO\ImportExport.cs" />
     <Compile Include="DTO\Ingredient.cs" />
+    <Compile Include="DTO\Job.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\Recipe.cs" />
+    <Compile Include="DTO\Shift.cs" />
+    <Compile Include="DTO\Staff.cs" />
     <Compile Include="DTO\Table.cs" />
     <Compile Include="DTO\TimeKeeping.cs" />
     <Compile Include="fAccountProfile.cs">
@@ -81,23 +87,29 @@
     <Compile Include="fAdmin.Designer.cs">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="fChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fChamCong.Designer.cs">
+      <DependentUpon>fChamCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="fLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fLogin.Designer.cs">
       <DependentUpon>fLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="fStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fStaff.Designer.cs">
+      <DependentUpon>fStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="fTableManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fTableManager.Designer.cs">
       <DependentUpon>fTableManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fTimeKeeping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fTimeKeeping.Designer.cs">
-      <DependentUpon>fTimeKeeping.cs</DependentUpon>
     </Compile>
     <Compile Include="Microsoft\Reporting.cs" />
     <Compile Include="Program.cs" />
@@ -108,14 +120,17 @@
     <EmbeddedResource Include="fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fChamCong.resx">
+      <DependentUpon>fChamCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fStaff.resx">
+      <DependentUpon>fStaff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fTableManager.resx">
       <DependentUpon>fTableManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fTimeKeeping.resx">
-      <DependentUpon>fTimeKeeping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

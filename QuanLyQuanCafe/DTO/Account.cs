@@ -16,6 +16,7 @@ namespace BanHang.DTO
             this.DisplayName = displayName;
             this.Type = type;
             this.Password = password;
+           // this.IDStaff = idStaff;
         }
 
         public Account(DataRow row)
@@ -25,7 +26,14 @@ namespace BanHang.DTO
             this.DisplayName = row["displayName"].ToString();
             this.Type = (int)row["type"];
             this.Password = row["password"].ToString();
+          //  this.IDStaff = (int)row["idStaff"];
         }
+        //private int idStaff;
+        //public int IDStaff
+        //{
+        //    get { return idStaff; }
+        //    set { idStaff = value; }
+        //}
         private int id;
         public int ID
         {

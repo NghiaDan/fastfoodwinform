@@ -33,6 +33,7 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chấmCôngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lsvBill = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,7 +52,6 @@
             this.cbFood = new System.Windows.Forms.ComboBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.chấmCôngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -102,6 +102,13 @@
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
+            // 
+            // chấmCôngToolStripMenuItem
+            // 
+            this.chấmCôngToolStripMenuItem.Name = "chấmCôngToolStripMenuItem";
+            this.chấmCôngToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.chấmCôngToolStripMenuItem.Text = "Chấm công";
+            this.chấmCôngToolStripMenuItem.Click += new System.EventHandler(this.chấmCôngToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -282,13 +289,6 @@
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(572, 527);
             this.flpTable.TabIndex = 5;
-            // 
-            // chấmCôngToolStripMenuItem
-            // 
-            this.chấmCôngToolStripMenuItem.Name = "chấmCôngToolStripMenuItem";
-            this.chấmCôngToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
-            this.chấmCôngToolStripMenuItem.Text = "Chấm công";
-            this.chấmCôngToolStripMenuItem.Click += new System.EventHandler(this.chấmCôngToolStripMenuItem_Click);
             // 
             // fTableManager
             // 

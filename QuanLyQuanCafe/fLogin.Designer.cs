@@ -44,6 +44,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Pink;
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.panel3);
@@ -143,7 +144,7 @@
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.BackColor = System.Drawing.Color.Pink;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(565, 193);
             this.Controls.Add(this.panel1);

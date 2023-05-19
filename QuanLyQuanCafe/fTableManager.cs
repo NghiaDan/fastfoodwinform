@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using QuanLyQuanCafe;
 
 namespace BanHang
 {
@@ -43,7 +44,7 @@ namespace BanHang
         void ChangeAccount(int type)
         {
             adminToolStripMenuItem.Enabled = type == 1;
-            chấmCôngToolStripMenuItem.Enabled = type == 0;
+            //chấmCôngToolStripMenuItem.Enabled = type == 0;
             thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
         }
         void LoadCategory()
@@ -161,6 +162,11 @@ namespace BanHang
             f.UpdateFood += f_UpdateFood;
             f.ShowDialog();
         }
+        private void chấmCôngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fChamCong f = new fChamCong();
+            f.ShowDialog();
+        }
 
         void f_UpdateFood(object sender, EventArgs e)
         {
@@ -275,14 +281,10 @@ namespace BanHang
             }
         }
 
+
         #endregion
 
-        private void chấmCôngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            fTimeKeeping f = new fTimeKeeping();
-            f.ShowDialog();
-
-        }
+       
     }
 }
 
