@@ -9,14 +9,16 @@ namespace BanHang.DTO
 {
     public class Account
     {
-        public Account(int id,string userName, string displayName, int type, string password = null)
+        public Account(int id,string userName, string displayName, int type, string password = null)//int idStaff)
+            
         {   
             this.ID=id;
             this.UserName = userName;
             this.DisplayName = displayName;
             this.Type = type;
             this.Password = password;
-           // this.IDStaff = idStaff;
+           // this.IdStaff = idStaff;
+            // this.IDStaff = idStaff;
         }
 
         public Account(DataRow row)
@@ -26,14 +28,16 @@ namespace BanHang.DTO
             this.DisplayName = row["displayName"].ToString();
             this.Type = (int)row["type"];
             this.Password = row["password"].ToString();
+           // this.IdStaff = (int)row["idStaff"];
           //  this.IDStaff = (int)row["idStaff"];
         }
         //private int idStaff;
-        //public int IDStaff
+        //public int IdStaff
         //{
         //    get { return idStaff; }
         //    set { idStaff = value; }
         //}
+
         private int id;
         public int ID
         {
@@ -66,6 +70,7 @@ namespace BanHang.DTO
         }
 
         private string userName;
+       
 
         public string UserName
         {

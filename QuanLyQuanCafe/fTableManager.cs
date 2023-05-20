@@ -26,7 +26,7 @@ namespace BanHang
         public Account LoginAccount
         {
             get { return loginAccount; }
-            set { loginAccount = value; ChangeAccount(loginAccount.Type); }
+            set { loginAccount = value; ChangeAccount(loginAccount.Type) ; }
         }
         public fTableManager(Account acc)
         {
@@ -44,7 +44,7 @@ namespace BanHang
         void ChangeAccount(int type)
         {
             adminToolStripMenuItem.Enabled = type == 1;
-            //chấmCôngToolStripMenuItem.Enabled = type == 0;
+            chấmCôngToolStripMenuItem.Enabled = type == 0;
             thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
         }
         void LoadCategory()
@@ -165,6 +165,7 @@ namespace BanHang
         private void chấmCôngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fChamCong f = new fChamCong();
+            
             f.ShowDialog();
         }
 

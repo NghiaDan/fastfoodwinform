@@ -84,6 +84,9 @@
             this.btnAddNL = new System.Windows.Forms.Button();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel23 = new System.Windows.Forms.Panel();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.txbIDAccount = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.panel39 = new System.Windows.Forms.Panel();
             this.txbMa = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -207,6 +210,18 @@
             this.btnEditJob = new System.Windows.Forms.Button();
             this.btnAddJob = new System.Windows.Forms.Button();
             this.dtgvjob = new System.Windows.Forms.DataGridView();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.panel41 = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel42 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dtgvTimeKeeping = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.USP_GetListBillByDateForReportBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -233,6 +248,7 @@
             this.panel35.SuspendLayout();
             this.tpAccount.SuspendLayout();
             this.panel23.SuspendLayout();
+            this.panel40.SuspendLayout();
             this.panel39.SuspendLayout();
             this.panel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -275,6 +291,10 @@
             this.tabPage6.SuspendLayout();
             this.panel37.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvjob)).BeginInit();
+            this.tabPage7.SuspendLayout();
+            this.panel41.SuspendLayout();
+            this.panel42.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).BeginInit();
             this.SuspendLayout();
             // 
             // USP_GetListBillByDateForReportBindingSource
@@ -840,6 +860,7 @@
             // 
             // panel23
             // 
+            this.panel23.Controls.Add(this.panel40);
             this.panel23.Controls.Add(this.panel39);
             this.panel23.Controls.Add(this.btnResetPassword);
             this.panel23.Controls.Add(this.panel25);
@@ -851,11 +872,40 @@
             this.panel23.Size = new System.Drawing.Size(380, 426);
             this.panel23.TabIndex = 6;
             // 
+            // panel40
+            // 
+            this.panel40.Controls.Add(this.txbIDAccount);
+            this.panel40.Controls.Add(this.label30);
+            this.panel40.Location = new System.Drawing.Point(4, 5);
+            this.panel40.Margin = new System.Windows.Forms.Padding(4);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(372, 54);
+            this.panel40.TabIndex = 2;
+            // 
+            // txbIDAccount
+            // 
+            this.txbIDAccount.Location = new System.Drawing.Point(169, 10);
+            this.txbIDAccount.Margin = new System.Windows.Forms.Padding(4);
+            this.txbIDAccount.Name = "txbIDAccount";
+            this.txbIDAccount.Size = new System.Drawing.Size(197, 22);
+            this.txbIDAccount.TabIndex = 1;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label30.Location = new System.Drawing.Point(4, 11);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(36, 24);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "ID:";
+            // 
             // panel39
             // 
             this.panel39.Controls.Add(this.txbMa);
             this.panel39.Controls.Add(this.label19);
-            this.panel39.Location = new System.Drawing.Point(4, 189);
+            this.panel39.Location = new System.Drawing.Point(4, 252);
             this.panel39.Margin = new System.Windows.Forms.Padding(4);
             this.panel39.Name = "panel39";
             this.panel39.Size = new System.Drawing.Size(372, 54);
@@ -882,7 +932,7 @@
             // 
             // btnResetPassword
             // 
-            this.btnResetPassword.Location = new System.Drawing.Point(276, 272);
+            this.btnResetPassword.Location = new System.Drawing.Point(276, 316);
             this.btnResetPassword.Margin = new System.Windows.Forms.Padding(4);
             this.btnResetPassword.Name = "btnResetPassword";
             this.btnResetPassword.Size = new System.Drawing.Size(100, 57);
@@ -895,7 +945,7 @@
             // 
             this.panel25.Controls.Add(this.numericUpDown1);
             this.panel25.Controls.Add(this.label11);
-            this.panel25.Location = new System.Drawing.Point(4, 127);
+            this.panel25.Location = new System.Drawing.Point(4, 190);
             this.panel25.Margin = new System.Windows.Forms.Padding(4);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(372, 54);
@@ -929,7 +979,7 @@
             // 
             this.panel26.Controls.Add(this.txbDisplayName);
             this.panel26.Controls.Add(this.label12);
-            this.panel26.Location = new System.Drawing.Point(4, 65);
+            this.panel26.Location = new System.Drawing.Point(4, 128);
             this.panel26.Margin = new System.Windows.Forms.Padding(4);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(372, 54);
@@ -958,7 +1008,7 @@
             // 
             this.panel27.Controls.Add(this.txbUserName);
             this.panel27.Controls.Add(this.label13);
-            this.panel27.Location = new System.Drawing.Point(4, 4);
+            this.panel27.Location = new System.Drawing.Point(4, 67);
             this.panel27.Margin = new System.Windows.Forms.Padding(4);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(372, 54);
@@ -1646,6 +1696,7 @@
             this.tcAdmin.Controls.Add(this.tabPage2);
             this.tcAdmin.Controls.Add(this.tabPage3);
             this.tcAdmin.Controls.Add(this.tabPage6);
+            this.tcAdmin.Controls.Add(this.tabPage7);
             this.tcAdmin.Location = new System.Drawing.Point(16, 15);
             this.tcAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.tcAdmin.Name = "tcAdmin";
@@ -1766,7 +1817,6 @@
             this.btnViewIngredient.TabIndex = 2;
             this.btnViewIngredient.Text = "Thống kê";
             this.btnViewIngredient.UseVisualStyleBackColor = true;
-            this.btnViewIngredient.Click += new System.EventHandler(this.btnViewIngredient_Click);
             // 
             // dtpkToDateIngredient
             // 
@@ -2133,6 +2183,132 @@
             this.dtgvjob.Size = new System.Drawing.Size(839, 318);
             this.dtgvjob.TabIndex = 6;
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.panel41);
+            this.tabPage7.Controls.Add(this.panel42);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(869, 511);
+            this.tabPage7.TabIndex = 13;
+            this.tabPage7.Text = "Chấm công";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // panel41
+            // 
+            this.panel41.Controls.Add(this.btnView);
+            this.panel41.Controls.Add(this.dateTimePicker2);
+            this.panel41.Controls.Add(this.dateTimePicker1);
+            this.panel41.Location = new System.Drawing.Point(9, 8);
+            this.panel41.Margin = new System.Windows.Forms.Padding(4);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(851, 32);
+            this.panel41.TabIndex = 3;
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(376, 0);
+            this.btnView.Margin = new System.Windows.Forms.Padding(4);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(100, 28);
+            this.btnView.TabIndex = 2;
+            this.btnView.Text = "Thống kê";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(580, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker2.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker1.TabIndex = 0;
+            // 
+            // panel42
+            // 
+            this.panel42.Controls.Add(this.textBox1);
+            this.panel42.Controls.Add(this.button2);
+            this.panel42.Controls.Add(this.button3);
+            this.panel42.Controls.Add(this.button4);
+            this.panel42.Controls.Add(this.button5);
+            this.panel42.Controls.Add(this.dtgvTimeKeeping);
+            this.panel42.Location = new System.Drawing.Point(9, 48);
+            this.panel42.Margin = new System.Windows.Forms.Padding(4);
+            this.panel42.Name = "panel42";
+            this.panel42.Size = new System.Drawing.Size(851, 454);
+            this.panel42.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(376, 422);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(99, 22);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "1";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(639, 422);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Next";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(112, 422);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Previours";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(747, 423);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 28);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Last";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(4, 422);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 28);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "First";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // dtgvTimeKeeping
+            // 
+            this.dtgvTimeKeeping.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvTimeKeeping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvTimeKeeping.Location = new System.Drawing.Point(4, 4);
+            this.dtgvTimeKeeping.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvTimeKeeping.Name = "dtgvTimeKeeping";
+            this.dtgvTimeKeeping.RowHeadersWidth = 51;
+            this.dtgvTimeKeeping.Size = new System.Drawing.Size(843, 412);
+            this.dtgvTimeKeeping.TabIndex = 0;
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2177,6 +2353,8 @@
             this.panel35.ResumeLayout(false);
             this.tpAccount.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
+            this.panel40.ResumeLayout(false);
+            this.panel40.PerformLayout();
             this.panel39.ResumeLayout(false);
             this.panel39.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -2235,6 +2413,11 @@
             this.tabPage6.PerformLayout();
             this.panel37.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvjob)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            this.panel41.ResumeLayout(false);
+            this.panel42.ResumeLayout(false);
+            this.panel42.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2419,5 +2602,20 @@
         private System.Windows.Forms.Button btnEditJob;
         private System.Windows.Forms.Button btnAddJob;
         private System.Windows.Forms.DataGridView dtgvjob;
+        private System.Windows.Forms.Panel panel40;
+        private System.Windows.Forms.TextBox txbIDAccount;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Panel panel41;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Panel panel42;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridView dtgvTimeKeeping;
     }
 }

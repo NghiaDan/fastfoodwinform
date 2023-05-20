@@ -67,9 +67,6 @@ namespace BanHang.DAO
             return null;
         }
 
-       
-
-
 
         public bool InsertAccount(string name, string displayName, int type,int idStaff)
         {
@@ -78,18 +75,18 @@ namespace BanHang.DAO
 
             return result > 0;
         }
-
-        public bool UpdateAccount(string name, string displayName, int type)
+        
+        public bool EditAccount(int id,string name, string displayName, int type,int idStaff)
         {
-            string query = string.Format("UPDATE dbo.Account SET DisplayName = N'{1}', Type = {2} WHERE UserName = N'{0}'", name, displayName, type);
+            string query = string.Format("UPDATE dbo.Account SET DisplayName = N'{1}', Type = {2},idStaff = N'{3}',name = N'{4}' WHERE id = N'{0}'",id, displayName, type,idStaff, name);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;
         }
 
-        public bool DeleteAccount(string name )
+        public bool DeleteAccount(string name)
         {
-            string query = string.Format("Delete Account where UserName = N'{0}'", name);
+            string query = string.Format("Delete Account where name = N'{0}'", name);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;

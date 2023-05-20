@@ -109,7 +109,7 @@ CREATE TABLE [TimeKeeping](
 	[TimeCheckIn] varchar(7),	--SELECT RIGHT(CONVERT(VARCHAR, GETDATE(), 100),7)
 	[idShift] int				--tạo 4 checkbox cho 4 ca
 )
-
+SELECT RIGHT(CONVERT(VARCHAR, GETDATE(), 100),7)
 --------------------------------------------------------------------------------------
 INSERT [dbo].[Account] ([UserName],[DisplayName],[Password],[Type]) VALUES ('nghia', N'Nghĩa Đặng',1,1)
 
@@ -878,7 +878,7 @@ alter PROC USP_GetTimeKeepingListByDate
 @checkIn date
 AS 
 BEGIN
-	select a.UserName,a.DisplayName,DateCheckIn
+	select a.UserName,a.DisplayName,DateCheckIn,TimeCheckIn
 	from TimeKeeping t,Account a
 	where t.idAccount=a.id
 END
@@ -917,4 +917,5 @@ go
 
 select UserName,DisplayName,Type,s.FirstName,s.LastName from Account a, Staff s
 where a.idStaff=s.id
-select * from Account
+	select * from TimeKeeping
+	select * from Account

@@ -132,9 +132,9 @@ namespace BanHang
             LoadAccount();
         }
 
-        void EditAccount(string userName, string displayName, int type)
+        void EditAccount(int id,string userName, string displayName, int type,int idStaff)
         {
-            if (AccountDAO.Instance.UpdateAccount(userName, displayName, type))
+            if (AccountDAO.Instance.EditAccount(id,userName, displayName, type,idStaff))
             {
                 MessageBox.Show("Cập nhật tài khoản thành công");
             }
@@ -200,11 +200,12 @@ namespace BanHang
 
         private void btnEditAccount_Click(object sender, EventArgs e)
         {
+            int id=Convert.ToInt32( txbIDAccount.Text);
             string userName = txbUserName.Text;
             string displayName = txbDisplayName.Text;
             int type = (int)numericUpDown1.Value;
-
-            EditAccount(userName, displayName, type);
+            int idStaff = Convert.ToInt32(txbMa.Text);
+            EditAccount(id,userName, displayName, type,idStaff);
         }
 
 
@@ -808,6 +809,22 @@ namespace BanHang
             {
                 MessageBox.Show("Công việc không thêm được");
             }
+        }
+        //bảng chấm công
+        void LoadDateTimePickerTimeKeeping()
+        {
+            DateTime today = DateTime.Now;
+            dateTimePicker1.Value = new DateTime(today.Year, today.Month, 1);
+        }
+
+        void LoadListTimeKeepingByDate(DateTime DateCheckIn)
+        {
+            dtgvTimeKeeping.DataSource = TimeKeepingDAO.Instance.GetTimeKeepingListByDate(DateCheckIn);
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            LoadListTimeKeepingByDate(dateTimePicker1.Value);
         }
     }    
 }
