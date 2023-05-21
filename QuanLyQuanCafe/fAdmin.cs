@@ -625,11 +625,10 @@ namespace BanHang
         {
             dtgv.DataSource = ImportExportDAO.Instance.GetIngredientListByDate(DateCheckIn, DateCheckOut);
         }
-        private void btnViewIngredient_Click(object sender, EventArgs e)
+        private void btnViewIngredient_Click_1(object sender, EventArgs e)
         {
             LoadListIngredientByDate(dtpkFromDateIngredient.Value, dtpkToDateIngredient.Value);
         }
-
         private void btnFristIngredientPage_Click(object sender, EventArgs e)
         {
             txtPageIngredient.Text = "1";
@@ -826,6 +825,8 @@ namespace BanHang
         {
             LoadListTimeKeepingByDate(dateTimePicker1.Value);
         }
+
+   
     }    
 }
 

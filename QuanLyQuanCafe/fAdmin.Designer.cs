@@ -1817,6 +1817,7 @@
             this.btnViewIngredient.TabIndex = 2;
             this.btnViewIngredient.Text = "Thống kê";
             this.btnViewIngredient.UseVisualStyleBackColor = true;
+            this.btnViewIngredient.Click += new System.EventHandler(this.btnViewIngredient_Click_1);
             // 
             // dtpkToDateIngredient
             // 
