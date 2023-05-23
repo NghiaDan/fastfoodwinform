@@ -83,10 +83,12 @@ namespace BanHang
 
 
         void AddAccountBinding()
-        {
+        {   
+            txbIDAccount.DataBindings.Add(new Binding("Text",dtgvAccount.DataSource,"id",true, DataSourceUpdateMode.Never));
             txbUserName.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
             txbDisplayName.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
             numericUpDown1.DataBindings.Add(new Binding("Value", dtgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+            txbMa.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "idStaff", true, DataSourceUpdateMode.Never));
         }
 
         void LoadAccount()
@@ -118,9 +120,9 @@ namespace BanHang
         }
 
       //trang tài khoản
-        void AddAccount(string userName, string displayName, int type,int idStaff )
+        void AddAccount(string userName, string displayName,string password, int type,int idStaff )
         {
-            if (AccountDAO.Instance.InsertAccount(userName, displayName, type,idStaff))
+            if (AccountDAO.Instance.InsertAccount(userName, displayName, password, type,idStaff))
             {
                 MessageBox.Show("Thêm tài khoản thành công");
             }
@@ -132,9 +134,9 @@ namespace BanHang
             LoadAccount();
         }
 
-        void EditAccount(int id,string userName, string displayName, int type,int idStaff)
+        void EditAccount(int id,string userName, string displayName,string password, int type,int idStaff)
         {
-            if (AccountDAO.Instance.EditAccount(id,userName, displayName, type,idStaff))
+            if (AccountDAO.Instance.EditAccount(id,userName, displayName, password, type,idStaff))
             {
                 MessageBox.Show("Cập nhật tài khoản thành công");
             }
@@ -146,14 +148,14 @@ namespace BanHang
             LoadAccount();
         }
 
-        void DeleteAccount(string userName)
+        void DeleteAccount(int id)
         {
-            if (loginAccount.UserName.Equals(userName))
+            if (loginAccount.UserName.Equals(id))
             {
                 MessageBox.Show("Đừng xóa chính bạn");
                 return;
             }
-            if (AccountDAO.Instance.DeleteAccount(userName))
+            if (AccountDAO.Instance.DeleteAccount(id))
             {
                 MessageBox.Show("Xóa tài khoản thành công");
             }
@@ -184,28 +186,29 @@ namespace BanHang
         {
             string userName = txbUserName.Text;
             string displayName = txbDisplayName.Text;
+            string password=txbMatkhau.Text;    
             int type = (int)numericUpDown1.Value;
             int idStaff = Convert.ToInt32(txbMa.Text);
 
-            AddAccount(userName, displayName, type, idStaff);
+            AddAccount(userName, displayName,password, type, idStaff);
         }
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
+            int id= Convert.ToInt32( txbIDAccount.Text);
 
-            string userName = txbUserName.Text;
-
-            DeleteAccount(userName);
+            DeleteAccount(id);
         }
 
         private void btnEditAccount_Click(object sender, EventArgs e)
         {
-            int id=Convert.ToInt32( txbIDAccount.Text);
+            int id = Convert.ToInt32(txbIDAccount.Text);
             string userName = txbUserName.Text;
             string displayName = txbDisplayName.Text;
+            string password = txbMatkhau.Text;
             int type = (int)numericUpDown1.Value;
             int idStaff = Convert.ToInt32(txbMa.Text);
-            EditAccount(id,userName, displayName, type,idStaff);
+            EditAccount(id,userName, displayName,password, type,idStaff);
         }
 
 

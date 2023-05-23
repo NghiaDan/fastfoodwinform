@@ -40,7 +40,7 @@ namespace BanHang.DAO
 
         public DataTable GetListAccount()
         {
-            return DataProvider.Instance.ExecuteQuery("SELECT UserName, DisplayName, Type, idStaff FROM dbo.Account");
+            return DataProvider.Instance.ExecuteQuery("SELECT id, UserName, DisplayName, Type, idStaff FROM dbo.Account");
         }
 
         public List<Account> GetAccount()
@@ -68,25 +68,25 @@ namespace BanHang.DAO
         }
 
 
-        public bool InsertAccount(string name, string displayName, int type,int idStaff)
+        public bool InsertAccount(string name, string displayName,string password, int type,int idStaff)
         {
-            string query = string.Format("INSERT dbo.Account ( UserName, DisplayName, Type, password,idStaff )VALUES  ( N'{0}', N'{1}', {2}, N'{3}',N'{4}')", name, displayName, type, "1",idStaff);
+            string query = string.Format("INSERT dbo.Account (username,displayname,password,type,idStaff ) VALUES ( N'{0}', N'{1}',N'{2}', N'{3}',N'{4}')", name, displayName, "1", type, idStaff);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;
         }
         
-        public bool EditAccount(int id,string name, string displayName, int type,int idStaff)
+        public bool EditAccount(int id,string username, string displayName,string password, int type,int idStaff)
         {
-            string query = string.Format("UPDATE dbo.Account SET DisplayName = N'{1}', Type = {2},idStaff = N'{3}',name = N'{4}' WHERE id = N'{0}'",id, displayName, type,idStaff, name);
+            string query = string.Format("UPDATE dbo.Account SET DisplayName = N'{0}', Type = '{1}',idStaff = N'{2}',username = N'{3}', password = N'{4}'  WHERE id = N'{5}'", displayName, type,idStaff, username,"1", id);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;
         }
 
-        public bool DeleteAccount(string name)
+        public bool DeleteAccount(int id)
         {
-            string query = string.Format("Delete Account where name = N'{0}'", name);
+            string query = string.Format("Delete Account where id = N'{0}'", id);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;

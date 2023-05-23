@@ -111,7 +111,9 @@ CREATE TABLE [TimeKeeping](
 )
 SELECT RIGHT(CONVERT(VARCHAR, GETDATE(), 100),7)
 --------------------------------------------------------------------------------------
-INSERT [dbo].[Account] ([UserName],[DisplayName],[Password],[Type]) VALUES ('nghia', N'Nghĩa Đặng',1,1)
+
+INSERT [dbo].[Account] ([UserName],[DisplayName],[Password],[Type]) VALUES ('nghia3', N'Nghĩa Đặng',1,1)
+
 
 --
 INSERT [dbo].[FoodCategory] ([name]) VALUES ( N'Đồ ăn')

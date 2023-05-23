@@ -84,9 +84,6 @@
             this.btnAddNL = new System.Windows.Forms.Button();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.panel40 = new System.Windows.Forms.Panel();
-            this.txbIDAccount = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.panel39 = new System.Windows.Forms.Panel();
             this.txbMa = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -222,6 +219,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.dtgvTimeKeeping = new System.Windows.Forms.DataGridView();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txbIDAccount = new System.Windows.Forms.TextBox();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.panel44 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txbMatkhau = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.USP_GetListBillByDateForReportBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -248,7 +251,6 @@
             this.panel35.SuspendLayout();
             this.tpAccount.SuspendLayout();
             this.panel23.SuspendLayout();
-            this.panel40.SuspendLayout();
             this.panel39.SuspendLayout();
             this.panel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -295,6 +297,8 @@
             this.panel41.SuspendLayout();
             this.panel42.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).BeginInit();
+            this.panel40.SuspendLayout();
+            this.panel44.SuspendLayout();
             this.SuspendLayout();
             // 
             // USP_GetListBillByDateForReportBindingSource
@@ -860,52 +864,24 @@
             // 
             // panel23
             // 
+            this.panel23.Controls.Add(this.panel44);
             this.panel23.Controls.Add(this.panel40);
             this.panel23.Controls.Add(this.panel39);
             this.panel23.Controls.Add(this.btnResetPassword);
             this.panel23.Controls.Add(this.panel25);
             this.panel23.Controls.Add(this.panel26);
             this.panel23.Controls.Add(this.panel27);
-            this.panel23.Location = new System.Drawing.Point(480, 76);
+            this.panel23.Location = new System.Drawing.Point(489, 9);
             this.panel23.Margin = new System.Windows.Forms.Padding(4);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(380, 426);
             this.panel23.TabIndex = 6;
             // 
-            // panel40
-            // 
-            this.panel40.Controls.Add(this.txbIDAccount);
-            this.panel40.Controls.Add(this.label30);
-            this.panel40.Location = new System.Drawing.Point(4, 5);
-            this.panel40.Margin = new System.Windows.Forms.Padding(4);
-            this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(372, 54);
-            this.panel40.TabIndex = 2;
-            // 
-            // txbIDAccount
-            // 
-            this.txbIDAccount.Location = new System.Drawing.Point(169, 10);
-            this.txbIDAccount.Margin = new System.Windows.Forms.Padding(4);
-            this.txbIDAccount.Name = "txbIDAccount";
-            this.txbIDAccount.Size = new System.Drawing.Size(197, 22);
-            this.txbIDAccount.TabIndex = 1;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label30.Location = new System.Drawing.Point(4, 11);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(36, 24);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "ID:";
-            // 
             // panel39
             // 
             this.panel39.Controls.Add(this.txbMa);
             this.panel39.Controls.Add(this.label19);
-            this.panel39.Location = new System.Drawing.Point(4, 252);
+            this.panel39.Location = new System.Drawing.Point(4, 316);
             this.panel39.Margin = new System.Windows.Forms.Padding(4);
             this.panel39.Name = "panel39";
             this.panel39.Size = new System.Drawing.Size(372, 54);
@@ -932,10 +908,10 @@
             // 
             // btnResetPassword
             // 
-            this.btnResetPassword.Location = new System.Drawing.Point(276, 316);
+            this.btnResetPassword.Location = new System.Drawing.Point(235, 378);
             this.btnResetPassword.Margin = new System.Windows.Forms.Padding(4);
             this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(100, 57);
+            this.btnResetPassword.Size = new System.Drawing.Size(111, 44);
             this.btnResetPassword.TabIndex = 4;
             this.btnResetPassword.Text = "Đặt lại mật khẩu";
             this.btnResetPassword.UseVisualStyleBackColor = true;
@@ -945,7 +921,7 @@
             // 
             this.panel25.Controls.Add(this.numericUpDown1);
             this.panel25.Controls.Add(this.label11);
-            this.panel25.Location = new System.Drawing.Point(4, 190);
+            this.panel25.Location = new System.Drawing.Point(4, 254);
             this.panel25.Margin = new System.Windows.Forms.Padding(4);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(372, 54);
@@ -1042,7 +1018,7 @@
             this.panel28.Location = new System.Drawing.Point(7, 5);
             this.panel28.Margin = new System.Windows.Forms.Padding(4);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(565, 64);
+            this.panel28.Size = new System.Drawing.Size(465, 64);
             this.panel28.TabIndex = 5;
             // 
             // btnShowAccount
@@ -2310,6 +2286,65 @@
             this.dtgvTimeKeeping.Size = new System.Drawing.Size(843, 412);
             this.dtgvTimeKeeping.TabIndex = 0;
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label30.Location = new System.Drawing.Point(4, 11);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(36, 24);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "ID:";
+            // 
+            // txbIDAccount
+            // 
+            this.txbIDAccount.Location = new System.Drawing.Point(169, 10);
+            this.txbIDAccount.Margin = new System.Windows.Forms.Padding(4);
+            this.txbIDAccount.Name = "txbIDAccount";
+            this.txbIDAccount.ReadOnly = true;
+            this.txbIDAccount.Size = new System.Drawing.Size(197, 22);
+            this.txbIDAccount.TabIndex = 1;
+            // 
+            // panel40
+            // 
+            this.panel40.Controls.Add(this.txbIDAccount);
+            this.panel40.Controls.Add(this.label30);
+            this.panel40.Location = new System.Drawing.Point(4, 5);
+            this.panel40.Margin = new System.Windows.Forms.Padding(4);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(372, 54);
+            this.panel40.TabIndex = 2;
+            // 
+            // panel44
+            // 
+            this.panel44.Controls.Add(this.txbMatkhau);
+            this.panel44.Controls.Add(this.label31);
+            this.panel44.Location = new System.Drawing.Point(4, 190);
+            this.panel44.Margin = new System.Windows.Forms.Padding(4);
+            this.panel44.Name = "panel44";
+            this.panel44.Size = new System.Drawing.Size(372, 54);
+            this.panel44.TabIndex = 4;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label31.Location = new System.Drawing.Point(4, 11);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(110, 24);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "Mật khẩu: ";
+            // 
+            // txbMatkhau
+            // 
+            this.txbMatkhau.Location = new System.Drawing.Point(169, 14);
+            this.txbMatkhau.Margin = new System.Windows.Forms.Padding(4);
+            this.txbMatkhau.Name = "txbMatkhau";
+            this.txbMatkhau.Size = new System.Drawing.Size(197, 22);
+            this.txbMatkhau.TabIndex = 2;
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2354,8 +2389,6 @@
             this.panel35.ResumeLayout(false);
             this.tpAccount.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
-            this.panel40.ResumeLayout(false);
-            this.panel40.PerformLayout();
             this.panel39.ResumeLayout(false);
             this.panel39.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -2419,6 +2452,10 @@
             this.panel42.ResumeLayout(false);
             this.panel42.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvTimeKeeping)).EndInit();
+            this.panel40.ResumeLayout(false);
+            this.panel40.PerformLayout();
+            this.panel44.ResumeLayout(false);
+            this.panel44.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2603,9 +2640,6 @@
         private System.Windows.Forms.Button btnEditJob;
         private System.Windows.Forms.Button btnAddJob;
         private System.Windows.Forms.DataGridView dtgvjob;
-        private System.Windows.Forms.Panel panel40;
-        private System.Windows.Forms.TextBox txbIDAccount;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Panel panel41;
         private System.Windows.Forms.Button btnView;
@@ -2618,5 +2652,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataGridView dtgvTimeKeeping;
+        private System.Windows.Forms.Panel panel40;
+        private System.Windows.Forms.TextBox txbIDAccount;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Panel panel44;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txbMatkhau;
     }
 }
